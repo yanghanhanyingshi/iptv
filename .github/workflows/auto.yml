@@ -1,0 +1,30 @@
+name: 自动更新直播源
+on:
+  schedule:
+    cron: "0 */3 * * *"  # 每3小时自动跑
+  workflow_dispatch:     # 支持手动点运行
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 配置Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 执行采集
+        run: python main.py
+
+      - name: 提交更新
+        run: |
+          git config --global user.name "bot"
+          git config --global user.email "bot@github.com"
+          git add live.txt
+          git diff --quiet || git commit -m "自动更新有效直播源 $(date +'%Y-%m-%d %H:%M')"
+          git push
