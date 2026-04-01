@@ -7,18 +7,15 @@ on:
 # 明确给足写入权限
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取最新代码（强制同步远程）
+      - name: 拉取最新代码
         uses: actions/checkout@v4
         with:
           persist-credentials: true
-          ref: main
-          fetch-depth: 0  # 拉取完整历史，解决冲突
 
       - name: 配置Python环境
         uses: actions/setup-python@v5
@@ -34,20 +31,14 @@ jobs:
       - name: 执行采集脚本
         run: python main.py
 
-      - name: 提交并推送更新（强制拉取+推送，彻底解决冲突）
+      - name: 提交并推送更新（终极防冲突版）
         run: |
           # 配置git用户
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 先拉取远程最新代码，解决冲突
-          git pull --rebase origin main
-          
-          # 强制添加live.txt
+          # 直接覆盖远程，彻底解决冲突
           git add live.txt
-          
-          # 检查变更，有则提交
           git diff --quiet && git diff --staged --quiet || git commit -m "自动更新直播源 $(date +'%Y-%m-%d %H:%M')"
-          
-          # 强制推送，覆盖远程
-          git push --force-with-lease origin main
+          # 强制推送，直接覆盖远程main分支
+          git push -f origin main
