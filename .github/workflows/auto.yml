@@ -4,7 +4,6 @@ on:
     - cron: "0 */3 * * *"
   workflow_dispatch:
 
-# 明确给足写入权限
 permissions:
   contents: write
 
@@ -12,33 +11,23 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取最新代码
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-
-      - name: 配置Python环境
-        uses: actions/setup-python@v5
+      - name: 拉取代码
+        uses: actions/checkout@v5  # 升级到v5，适配Node.js 22
+      - name: 配置Python
+        uses: actions/setup-python@v6  # 升级到v6，适配Node.js 22
         with:
           python-version: "3.10"
           cache: "pip"
-
-      - name: 升级pip并安装依赖
+      - name: 安装依赖
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: 执行采集脚本
+      - name: 执行采集
         run: python main.py
-
-      - name: 提交并推送更新（终极防冲突版）
+      - name: 提交更新
         run: |
-          # 配置git用户
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # 直接覆盖远程，彻底解决冲突
           git add live.txt
           git diff --quiet && git diff --staged --quiet || git commit -m "自动更新直播源 $(date +'%Y-%m-%d %H:%M')"
-          # 强制推送，直接覆盖远程main分支
           git push -f origin main
