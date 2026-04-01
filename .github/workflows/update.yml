@@ -1,0 +1,26 @@
+name: Update TV Sources
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run main.py
+        run: python main.py
+      - name: Commit and push
+        run: |
+          git config --global user.name "bot"
+          git config --global user.email "bot@example.com"
+          git add result.txt
+          git commit -m "Update sources"
+          git push
