@@ -1,64 +1,31 @@
 import requests
 import re
 import time
-from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
-# 全局配置（防卡死核心）
+# 暴力超时配置（GitHub环境专用）
 HEADERS = {"User-Agent": "Mozilla/5.0"}
-# 单个接口最长等待5秒，超时直接跳过
-SINGLE_URL_TIMEOUT = 5
-# 单个链接检测最长2秒
-LINK_CHECK_TIMEOUT = 2
-# 最多开5个线程，避免过载
-MAX_THREADS = 5
+# 单个接口最多等3秒，超时直接扔
+URL_TIMEOUT = 3
+# 链接检测最多等1秒
+CHECK_TIMEOUT = 1
 
-# 1. 存活检测（带超时，快速失败）
-def is_alive(url):
+# 1. 极简存活检测（只看状态，不耗资源）
+def check_link(url):
     if not url or len(url) < 10:
         return False
-    # 官方源直接放行，不检测
-    if any(k in url for k in ["cctv.cn", "chinamobile.com", "tv.cctv.com"]):
+    # 央视/移动源直接过，不检测
+    if "cctv.cn" in url or "chinamobile.com" in url:
         return True
     try:
-        # 用head请求，只查状态，不下载内容
-        r = requests.head(
-            url,
-            timeout=LINK_CHECK_TIMEOUT,
-            allow_redirects=True,
-            stream=True,  # 不加载正文
-            headers=HEADERS
-        )
-        return r.status_code in (200, 206, 301, 302)
+        # 用GET只取前100字节，最快
+        r = requests.get(url, timeout=CHECK_TIMEOUT, headers=HEADERS, stream=True)
+        r.raw.read(100)  # 只读一点点，确认能连
+        return r.status_code < 400
     except:
         return False
 
-# 2. 单个接口拉取（带强制超时，卡死直接跳）
-def fetch_single_url(url):
-    result = []
-    try:
-        # 强制超时：5秒内没响应就跳过这个接口
-        resp = requests.get(
-            url,
-            timeout=SINGLE_URL_TIMEOUT,
-            headers=HEADERS,
-            stream=True  # 不加载大文件
-        )
-        resp.encoding = 'utf-8'
-        content = resp.text
-        # 匹配频道名+链接
-        matches = re.findall(r"([^\n#]+?),(https?://.+?\.m3u8)", content)
-        for name, link in matches:
-            n = name.strip()
-            l = link.strip()
-            if n and l and ("CCTV" in n or "卫视" in n):
-                result.append((n, l))
-    except:
-        # 任何错误（超时/连接失败）都直接跳过，不卡整体流程
-        pass
-    return result
-
-# 3. 批量拉取接口（多线程+全局超时）
-def pull_source():
+# 2. 单线程拉取（逐个来，不卡线程）
+def get_sources():
     # 你指定的4个接口
     urls = [
         "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u",
@@ -67,55 +34,56 @@ def pull_source():
         "https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.txt"
     ]
     
-    raw = {}
-    # 多线程+全局超时：10秒内必须拉完所有接口，否则终止
-    with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
-        futures = {executor.submit(fetch_single_url, url): url for url in urls}
-        for future in futures:
-            try:
-                # 单个任务最多等10秒，超时直接放弃
-                res = future.result(timeout=10)
-                for name, link in res:
-                    raw.setdefault(name, []).append(link)
-            except TimeoutError:
-                print(f"⚠️ 接口超时，直接跳过：{futures[future]}")
-            except:
-                print(f"❌ 接口访问失败，跳过：{futures[future]}")
-    return raw
+    all_data = {}
+    for idx, url in enumerate(urls):
+        try:
+            print(f"📥 拉取接口 {idx+1}/4: {url}")
+            # 3秒超时，超时直接跳过这个接口
+            resp = requests.get(url, timeout=URL_TIMEOUT, headers=HEADERS)
+            resp.encoding = "utf-8"
+            # 匹配 频道名,链接
+            lines = re.findall(r"([^\n#]+?),(https?://.+?\.m3u8)", resp.text)
+            for name, link in lines:
+                n = name.strip()
+                l = link.strip()
+                # 只留央视+卫视
+                if n and l and ("CCTV" in n or "卫视" in n):
+                    if n not in all_data:
+                        all_data[n] = []
+                    all_data[n].append(l)
+        except:
+            print(f"❌ 接口 {idx+1}/4 超时/失败，跳过")
+            continue
+    return all_data
 
-# 4. 同名合并+只留最快线路
-def filter_best(raw):
+# 3. 极简去重+选最快
+def filter_sources(raw):
     final = {}
     for name, links in raw.items():
-        # 去重链接
+        # 去重
         unique_links = list(set(links))
-        ok_links = []
-        # 多线程检测链接，更快
-        with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
-            futures = {executor.submit(is_alive, link): link for link in unique_links}
-            for future in futures:
-                try:
-                    if future.result(timeout=LINK_CHECK_TIMEOUT):
-                        ok_links.append(futures[future])
-                except:
-                    pass
-        if ok_links:
-            final[name] = ok_links[0]  # 留第一个可用（最快）
+        # 找第一个能用的
+        for link in unique_links:
+            if check_link(link):
+                final[name] = link
+                break
     return final
 
-# 主程序
+# 主程序（极简，无多余逻辑）
 if __name__ == "__main__":
-    start_time = time.time()
-    print("🔍 开始拉取接口（带超时保护，绝不卡死）...")
+    start = time.time()
+    print("🔍 开始拉取（极简模式，10秒必完）...")
     
-    raw_data = pull_source()
-    best_data = filter_best(raw_data)
-
+    # 拉取源
+    raw = get_sources()
+    # 过滤有效源
+    valid = filter_sources(raw)
+    
     # 写入文件
     with open("live.txt", "w", encoding="utf-8") as f:
-        for n, u in sorted(best_data.items()):
-            f.write(f"{n},{u}\n")
-
-    # 输出耗时，确认快速完成
-    cost = round(time.time() - start_time, 2)
-    print(f"✅ 完成！耗时 {cost} 秒 | 可用频道：{len(best_data)} 个（仅央视+卫视）")
+        for name, url in sorted(valid.items()):
+            f.write(f"{name},{url}\n")
+    
+    # 输出结果
+    cost = round(time.time() - start, 2)
+    print(f"✅ 完成！耗时 {cost} 秒 | 有效频道：{len(valid)} 个")
