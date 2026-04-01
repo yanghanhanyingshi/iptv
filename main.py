@@ -2,9 +2,10 @@ import requests
 import re
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 }
 
+# 你的两个数据源
 SOURCES = [
     "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/卫视/output/ipv4/result.txt",
     "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/TV/output/ipv4/result.txt"
@@ -26,63 +27,59 @@ WEISHI_ORDER = [
 
 ALL_ORDER = CCTV_ORDER + WEISHI_ORDER
 
-def fetch_text(url):
+def fetch(url):
     try:
-        r = requests.get(url, headers=headers, timeout=20)
+        r = requests.get(url, timeout=15)
         r.raise_for_status()
         return r.text
-    except Exception as e:
-        print(f"抓取失败 {url}: {e}")
+    except:
         return ""
 
-def parse_channels(text):
+def parse(text):
     lines = text.splitlines()
-    channels = []
-    pat = re.compile(r"^(.+?),\s*(https?://.+)", re.IGNORECASE)
+    res = []
+    pat = re.compile(r"(.+?),(https?://.+)")
     for line in lines:
         line = line.strip()
         m = pat.match(line)
         if m:
-            name, uri = m.groups()
-            channels.append((name.strip(), uri.strip()))
-    return channels
+            n, u = m.groups()
+            res.append((n.strip(), u.strip()))
+    return res
 
-def normalize_name(name):
-    s = name.upper().replace(" ", "")
-    if re.search(r"CCTV[-]?\d+", s):
-        num = re.search(r"(\d+)", s).group(1)
-        if num == "5" and ("5+" in s):
-            return "CCTV5+"
-        return f"CCTV{num}"
+def clean(name):
+    u = name.upper().replace(" ", "")
+    if "CCTV" in u:
+        num = re.search(r"(\d+)", u)
+        if num:
+            n = num.group(1)
+            if n == "5" and "5+" in u:
+                return "CCTV5+"
+            return f"CCTV{n}"
     for ws in WEISHI_ORDER:
         if ws in name:
             return ws
     return None
 
 def main():
-    all_links = []
+    all = []
     for url in SOURCES:
-        print(f"抓取: {url}")
-        txt = fetch_text(url)
-        chs = parse_channels(txt)
-        all_links.extend(chs)
+        all.extend(parse(fetch(url)))
 
     channel_map = {k: [] for k in ALL_ORDER}
-    for name, uri in all_links:
-        key = normalize_name(name)
-        if key in channel_map:
-            channel_map[key].append(uri)
+    for n, u in all:
+        k = clean(n)
+        if k in channel_map:
+            channel_map[k].append(u)
 
     out = ["灵鹿整合,#genre#"]
     for key in ALL_ORDER:
         for uri in channel_map[key]:
             out.append(f"{key},{uri}")
 
+    # 重点：文件名必须是 txt
     with open("result.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(out))
 
-    print(f"完成，共 {len(out)-1} 条源 → result.txt")
-
 if __name__ == "__main__":
     main()
-
