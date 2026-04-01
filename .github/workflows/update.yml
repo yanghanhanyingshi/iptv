@@ -1,8 +1,8 @@
-name: Update TV Sources
+name: 灵鹿直播源自动更新
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: '0 */6 * * *'
 
 jobs:
   build:
@@ -12,15 +12,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
-      - name: Install dependencies
+          python-version: '3.11'
+      - name: Install requests
         run: pip install requests
-      - name: Run main.py
+      - name: Run script
         run: python main.py
-      - name: Commit and push
-        run: |
-          git config --global user.name "bot"
-          git config --global user.email "bot@example.com"
-          git add result.txt
-          git commit -m "Update sources"
-          git push
+      - name: Commit & Push
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 自动更新直播源
+          add: result.txt
