@@ -1,108 +1,74 @@
 import requests
 import re
-import time
 
-# ======================
-# 配置
-# ======================
 HEADERS = {"User-Agent": "Mozilla/5.0"}
-URL_TIMEOUT = 5
-LINK_TIMEOUT = 1.5
+TIMEOUT = 1.5
 GROUP_HEADER = "灵鹿整合,#genre#"
 
-# 测速：返回耗时，越小越快
-def test_speed(url):
+def is_ok(url):
     try:
-        st = time.time()
-        requests.head(url, timeout=LINK_TIMEOUT, headers=HEADERS)
-        return time.time() - st
+        requests.head(url, timeout=TIMEOUT, headers=HEADERS)
+        return True
     except:
-        return 999
+        return False
 
-# 拉取4个源
-def fetch_all():
-    sources = [
+def fetch():
+    urls = [
         "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u",
         "https://www.iyouhun.com/tv/zb",
         "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u",
-        "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt"
+        "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/live.txt"
     ]
 
-    items = {}
-    for url in sources:
+    channels = {}
+    for u in urls:
         try:
-            r = requests.get(url, timeout=URL_TIMEOUT, headers=HEADERS)
-            r.encoding = "utf-8"
-            txt = r.text
+            resp = requests.get(u, timeout=TIMEOUT, headers=HEADERS)
+            resp.encoding = "utf-8"
+            txt = resp.text
 
-            pairs = []
-            # txt 格式
-            pairs += re.findall(r"([^,#\n]+?)\s*,\s*(https?://\S+\.m3u8)", txt)
-            # m3u 格式
+            pairs = re.findall(r"([^,#\n]+?)\s*,\s*(https?://\S+?m3u8)", txt)
             names = re.findall(r"#EXTINF:-1.*?,(.+)\n", txt)
-            urls  = re.findall(r"(https?://\S+\.m3u8)", txt)
-            for n, u in zip(names, urls):
-                pairs.append((n.strip(), u.strip()))
+            links = re.findall(r"(https?://\S+?m3u8)", txt)
+            for n, l in zip(names, links):
+                pairs.append((n.strip(), l.strip()))
 
             for name, link in pairs:
                 name = name.strip()
-                link = link.strip()
-                if not name or not link:
-                    continue
                 if "CCTV" in name or "卫视" in name:
-                    # 统一央视名称
-                    m = re.search(r"CCTV[ -]*0*(\d+)", name)
-                    if m:
-                        name = f"CCTV-{m.group(1)}"
-                    if name not in items:
-                        items[name] = set()
-                    items[name].add(link)
+                    mt = re.search(r"CCTV[ -]*0*(\d+)", name)
+                    if mt:
+                        name = f"CCTV-{mt.group(1)}"
+                    if name not in channels:
+                        channels[name] = set()
+                    channels[name].add(link)
         except:
             continue
-    return items
+    return channels
 
-# 测速排序 + 只保留快的
-def sort_by_speed(items):
-    result = {}
-    for name, urls in items.items():
-        ranked = []
-        for u in urls:
-            t = test_speed(u)
-            if t < 999:
-                ranked.append((t, u))
-        # 越快越靠前
-        ranked.sort(key=lambda x: x[0])
-        result[name] = [u for t, u in ranked]
-    return result
-
-# 频道排序：CCTV1→2→3…
-def sort_channels(channel_links):
-    cctv = {}
-    wei = {}
-    for k, v in channel_links.items():
+def sort_channels(channels):
+    cctv, wei = {}, {}
+    for k, v in channels.items():
         if k.startswith("CCTV-"):
             cctv[k] = v
         else:
             wei[k] = v
 
-    def cctv_key(s):
+    def ckey(s):
         g = re.search(r"CCTV-(\d+)", s)
         return int(g.group(1)) if g else 999
 
-    cctv_sorted = sorted(cctv.items(), key=cctv_key)
-    wei_sorted = sorted(wei.items())
-    return dict(cctv_sorted + wei_sorted)
+    return dict(sorted(cctv.items(), key=ckey) + sorted(wei.items()))
 
-# 主程序
 if __name__ == "__main__":
-    data = fetch_all()
-    ranked = sort_by_speed(data)
-    sorted_ch = sort_channels(ranked)
+    data = fetch()
+    filtered = {k: [u for u in v if is_ok(u)] for k, v in data.items()}
+    sorted_data = sort_channels(filtered)
 
     with open("live.txt", "w", encoding="utf-8") as f:
         f.write(f"{GROUP_HEADER}\n")
-        for name, links in sorted_ch.items():
-            for url in links:
-                f.write(f"{name},{url}\n")
+        for name, links in sorted_data.items():
+            for l in links:
+                f.write(f"{name},{l}\n")
 
-    print("✅ 完成：去重 + 测速排序")
+    print("✅ 完成轻度检测")
