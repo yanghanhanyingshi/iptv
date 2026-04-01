@@ -2,15 +2,16 @@ import requests
 import re
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
-# 你的两个数据源
+# 采集源
 SOURCES = [
     "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/卫视/output/ipv4/result.txt",
     "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/TV/output/ipv4/result.txt"
 ]
 
+# 固定排序
 CCTV_ORDER = [
     "CCTV1", "CCTV2", "CCTV3", "CCTV4", "CCTV5", "CCTV5+", "CCTV6", "CCTV7",
     "CCTV8", "CCTV9", "CCTV10", "CCTV11", "CCTV12", "CCTV13", "CCTV14", "CCTV15", "CCTV17"
@@ -27,59 +28,67 @@ WEISHI_ORDER = [
 
 ALL_ORDER = CCTV_ORDER + WEISHI_ORDER
 
-def fetch(url):
+def fetch_text(url):
     try:
-        r = requests.get(url, timeout=15)
+        r = requests.get(url, headers=headers, timeout=20)
         r.raise_for_status()
         return r.text
-    except:
+    except Exception as e:
+        print(f"抓取失败: {url} | {e}")
         return ""
 
-def parse(text):
+def parse_channels(text):
     lines = text.splitlines()
-    res = []
-    pat = re.compile(r"(.+?),(https?://.+)")
+    channels = []
+    pat = re.compile(r"^(.+?),\s*(https?://.+)", re.IGNORECASE)
     for line in lines:
         line = line.strip()
-        m = pat.match(line)
-        if m:
-            n, u = m.groups()
-            res.append((n.strip(), u.strip()))
-    return res
+        match = pat.match(line)
+        if match:
+            name, uri = match.groups()
+            channels.append((name.strip(), uri.strip()))
+    return channels
 
-def clean(name):
-    u = name.upper().replace(" ", "")
-    if "CCTV" in u:
-        num = re.search(r"(\d+)", u)
-        if num:
-            n = num.group(1)
-            if n == "5" and "5+" in u:
-                return "CCTV5+"
-            return f"CCTV{n}"
+def normalize_name(name):
+    s = name.upper().replace(" ", "")
+    # 统一CCTV格式
+    if re.search(r"CCTV[-]?\d+", s):
+        num = re.search(r"(\d+)", s).group(1)
+        if num == "5" and ("5+" in s):
+            return "CCTV5+"
+        return f"CCTV{num}"
+    # 匹配卫视
     for ws in WEISHI_ORDER:
         if ws in name:
             return ws
     return None
 
 def main():
-    all = []
+    all_links = []
     for url in SOURCES:
-        all.extend(parse(fetch(url)))
+        print(f"正在抓取：{url}")
+        txt = fetch_text(url)
+        chs = parse_channels(txt)
+        all_links.extend(chs)
 
-    channel_map = {k: [] for k in ALL_ORDER}
-    for n, u in all:
-        k = clean(n)
-        if k in channel_map:
-            channel_map[k].append(u)
+    # 按频道归类
+    channel_map = {key: [] for key in ALL_ORDER}
+    for name, uri in all_links:
+        key = normalize_name(name)
+        if key in channel_map:
+            channel_map[key].append(uri)
 
+    # 构造输出，严格按你要的格式
     out = ["灵鹿整合,#genre#"]
     for key in ALL_ORDER:
         for uri in channel_map[key]:
             out.append(f"{key},{uri}")
 
-    # 重点：文件名必须是 txt
-    with open("result.txt", "w", encoding="utf-8") as f:
+    # 重点：直接生成前台读取的 live.txt！
+    with open("live.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(out))
+
+    print(f"完成！共 {len(out)-1} 条源，已保存为 live.txt")
 
 if __name__ == "__main__":
     main()
