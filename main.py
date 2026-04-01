@@ -2,7 +2,7 @@ import requests
 import re
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
 # 采集源
@@ -11,7 +11,7 @@ SOURCES = [
     "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/TV/output/ipv4/result.txt"
 ]
 
-# 固定排序顺序
+# 频道顺序
 CCTV_ORDER = [
     "CCTV1", "CCTV2", "CCTV3", "CCTV4", "CCTV5", "CCTV5+", "CCTV6", "CCTV7",
     "CCTV8", "CCTV9", "CCTV10", "CCTV11", "CCTV12", "CCTV13", "CCTV14", "CCTV15", "CCTV17"
@@ -28,84 +28,71 @@ WEISHI_ORDER = [
 
 ALL_ORDER = CCTV_ORDER + WEISHI_ORDER
 
-# 抓取文本
-def get_raw(url):
+# 抓取页面
+def fetch_text(url):
     try:
-        r = requests.get(url, headers=headers, timeout=15)
+        r = requests.get(url, headers=headers, timeout=20)
         r.raise_for_status()
         return r.text
-    except:
+    except Exception as e:
+        print(f"抓取失败: {url} | {e}")
         return ""
 
-# 解析频道
+# 解析频道行
 def parse_channels(text):
     lines = text.splitlines()
-    res = []
-    pat = re.compile(r'(.+?),(https?://.+)', re.I)
+    channels = []
+    pat = re.compile(r"^(.+?),\s*(https?://.+)", re.IGNORECASE)
     for line in lines:
         line = line.strip()
-        m = pat.match(line)
-        if m:
-            name, uri = m.groups()
-            res.append((name.strip(), uri.strip()))
-    return res
+        match = pat.match(line)
+        if match:
+            name, uri = match.groups()
+            channels.append((name.strip(), uri.strip()))
+    return channels
 
-# 核心：统一格式为 CCTV1、CCTV2...
-def normalize_channel_name(name):
-    s = name.lower()
-    # 去掉所有中文、空格、符号
-    s = re.sub(r'[^\w\s]', '', s)
-    s = re.sub(r'\s+', '', s)
-    # 匹配 cctv数字
-    match = re.search(r'cctv(\d+)', s)
-    if match:
-        num = match.group(1)
-        if num == '5':
-            # 判断CCTV5+
-            if '5+' in name or '5plus' in s:
-                return 'CCTV5+'
-        return f'CCTV{num}'
-    # 卫视原样返回
+# 统一频道名称
+def normalize_name(name):
+    u = name.upper().replace(" ", "")
+    # 处理 CCTV
+    if re.search(r"CCTV[- ]?\d+", u):
+        num = re.search(r"(\d+)", u).group(1)
+        if num == "5" and ("5+" in u or "5PLUS" in u):
+            return "CCTV5+"
+        return f"CCTV{num}"
+    # 卫视匹配
     for ws in WEISHI_ORDER:
         if ws in name:
             return ws
-    return name
-
-# 匹配排序key
-def match_key(name):
-    cn = normalize_channel_name(name)
-    for key in ALL_ORDER:
-        if key == cn:
-            return key
     return None
 
+# 主程序
 def main():
-    all_raw = []
+    all_links = []
     for url in SOURCES:
-        print(f"抓取：{url}")
-        txt = get_raw(url)
+        print(f"正在抓取：{url}")
+        txt = fetch_text(url)
         chs = parse_channels(txt)
-        all_raw.extend(chs)
+        all_links.extend(chs)
 
-    # 按频道分组
+    # 按频道归类
     channel_map = {key: [] for key in ALL_ORDER}
-    for name, uri in all_raw:
-        key = match_key(name)
-        if key:
+    for name, uri in all_links:
+        key = normalize_name(name)
+        if key in channel_map:
             channel_map[key].append(uri)
 
     # 构造输出
-    out_lines = ["灵鹿整合,#genre#"]
+    out = ["灵鹿整合,#genre#"]
     for key in ALL_ORDER:
         for uri in channel_map[key]:
-            out_lines.append(f"{key},{uri}")
+            out.append(f"{key},{uri}")
 
-    final = "\n".join(out_lines)
+    # 写入文件
     with open("result.txt", "w", encoding="utf-8") as f:
-        f.write(final)
+        f.write("\n".join(out))
 
-    print("生成完成：result.txt")
-    print(f"总计有效线路：{len(out_lines)-1} 条")
+    print(f"完成！共 {len(out)-1} 条源，已保存为 result.txt")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
