@@ -8,6 +8,7 @@ import time
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
 URL_TIMEOUT = 3  # 单个接口最多等3秒，超时直接跳过
 CHECK_TIMEOUT = 1  # 链接检测最多等1秒
+GROUP_HEADER = "灵鹿整合,#genre#"  # 你指定的开头格式
 
 # ======================
 # 1. 存活检测（过滤死链）
@@ -58,6 +59,12 @@ def pull_sources():
                 clean_name = name.strip()
                 clean_link = link.strip()
                 if clean_name and clean_link and ("CCTV" in clean_name or "卫视" in clean_name):
+                    # 统一央视命名格式（兼容CCTV1/CCTV-1）
+                    if "CCTV" in clean_name:
+                        # 提取数字，统一为 CCTV-X 格式
+                        num_match = re.search(r'CCTV[ -]*(\d+)', clean_name)
+                        if num_match:
+                            clean_name = f"CCTV-{num_match.group(1)}"
                     if clean_name not in raw_data:
                         raw_data[clean_name] = []
                     raw_data[clean_name].append(clean_link)
@@ -82,29 +89,26 @@ def filter_best_sources(raw):
     return final_data
 
 # ======================
-# 4. 自定义排序（核心：央视按数字，卫视按拼音）
+# 4. 自定义排序（央视按数字1-17，卫视按拼音）
 # ======================
 def custom_sort(channels):
     # 第一步：分离央视和卫视
     cctv_channels = {}
     satellite_channels = {}
     for name, url in channels.items():
-        if "CCTV" in name:
+        if "CCTV-" in name:
             cctv_channels[name] = url
         else:
             satellite_channels[name] = url
     
-    # 第二步：央视按数字排序（CCTV1→CCTV2→CCTV3...）
+    # 第二步：央视按数字排序（CCTV-1→CCTV-2→CCTV-3...）
     def cctv_sort_key(name):
-        # 提取CCTV后面的数字（处理 "CCTV-1" "CCTV1" "CCTV 1" 等格式）
-        num_match = re.search(r'CCTV[ -]*(\d+)', name)
-        if num_match:
-            return int(num_match.group(1))
-        return 99  # 非数字央视（如CCTV高清）放最后
+        num_match = re.search(r'CCTV-(\d+)', name)
+        return int(num_match.group(1)) if num_match else 99
     
     sorted_cctv = dict(sorted(cctv_channels.items(), key=lambda x: cctv_sort_key(x[0])))
     
-    # 第三步：卫视按名称拼音排序（整齐不乱）
+    # 第三步：卫视按名称拼音排序
     sorted_satellite = dict(sorted(satellite_channels.items()))
     
     # 第四步：合并（央视在前，卫视在后）
@@ -115,11 +119,11 @@ def custom_sort(channels):
     return sorted_all
 
 # ======================
-# 主程序（极简，无冗余）
+# 主程序（严格匹配指定格式）
 # ======================
 if __name__ == "__main__":
     start_time = time.time()
-    print("🔍 开始拉取直播源（防卡死+有序排序）...")
+    print(f"🔍 开始拉取直播源（严格匹配 {GROUP_HEADER} 格式）...")
     
     # 拉取原始数据
     raw_sources = pull_sources()
@@ -128,14 +132,16 @@ if __name__ == "__main__":
     # 自定义排序（央视按数字，卫视按拼音）
     sorted_sources = custom_sort(valid_sources)
     
-    # 写入live.txt（UTF-8编码，避免乱码）
+    # 写入live.txt（严格按你指定的格式）
     with open("live.txt", "w", encoding="utf-8") as f:
-        # 按自定义顺序写入
+        # 第一行：灵鹿整合,#genre#
+        f.write(f"{GROUP_HEADER}\n")
+        # 后续行：纯频道名,链接（无任何前缀）
         for name, url in sorted_sources.items():
             f.write(f"{name},{url}\n")
     
     # 输出结果，确认完成
     cost_time = round(time.time() - start_time, 2)
-    print(f"✅ 全部完成！")
+    print(f"✅ 格式匹配完成！")
     print(f"⏱️  总耗时：{cost_time} 秒")
-    print(f"📺 有效频道数：{len(sorted_sources)} 个（央视+卫视，已排序）")
+    print(f"📺 有效频道数：{len(sorted_sources)} 个（严格按指定格式生成）")
