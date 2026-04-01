@@ -1,23 +1,25 @@
-name: Auto Update
+name: 灵鹿直播源自动更新
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: '0 */6 * * *'
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - run: pip install requests
-      - run: python main.py
-
-      - name: Push
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run main.py
+        run: python main.py
+      - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:
-          message: "Update result.txt"
-          add: "result.txt"
+          message: 自动更新直播源
+          add: live.txt
 
