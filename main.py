@@ -3,145 +3,116 @@ import re
 import time
 
 # ======================
-# 核心配置（防卡死+极速）
+# 配置
 # ======================
-HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
-URL_TIMEOUT = 3  # 单个接口最多等3秒，超时直接跳过
-CHECK_TIMEOUT = 1  # 链接检测最多等1秒
-GROUP_HEADER = "灵鹿整合,#genre#"  # 你指定的开头格式
+HEADERS = {"User-Agent": "Mozilla/5.0"}
+URL_TIMEOUT = 4
+CHECK_TIMEOUT = 1
+GROUP_HEADER = "灵鹿整合,#genre#"
 
 # ======================
-# 1. 存活检测（过滤死链）
+# 检测链接是否可用
 # ======================
 def check_link(url):
     if not url or len(url) < 10:
         return False
-    # 央视/移动官方源直接放行，不检测
-    if "cctv.cn" in url or "chinamobile.com" in url:
-        return True
     try:
-        # 极简请求：只取前100字节，确认能连接
-        resp = requests.get(
-            url,
-            timeout=CHECK_TIMEOUT,
-            headers=HEADERS,
-            stream=True,  # 不加载完整文件
-            allow_redirects=True
-        )
-        resp.raw.read(100)  # 只读少量数据，极速判断
-        return resp.status_code < 400
+        r = requests.get(url, timeout=CHECK_TIMEOUT, stream=True, headers=HEADERS)
+        r.raw.read(100)
+        return r.status_code < 400
     except:
         return False
 
 # ======================
-# 2. 拉取指定的4个接口
+# 抓取你指定的4个接口
 # ======================
 def pull_sources():
-    # 你指定的4个核心接口
     target_urls = [
+        "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u",
+        "https://www.iyouhun.com/tv/zb",
         "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u",
-        "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u",
-        "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
-        "https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.txt"
+        "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt"
     ]
-    
-    raw_data = {}  # 格式：{频道名: [链接1, 链接2...]}
+
+    raw = {}
     for idx, url in enumerate(target_urls, 1):
         try:
-            print(f"📥 正在拉取接口 {idx}/4: {url}")
-            # 3秒超时保护，超时直接跳过
+            print(f"拉取接口 {idx}/4: {url}")
             resp = requests.get(url, timeout=URL_TIMEOUT, headers=HEADERS)
             resp.encoding = "utf-8"
-            # 匹配「频道名,链接」格式
-            matches = re.findall(r"([^\n#]+?),(https?://.+?\.m3u8)", resp.text)
-            # 只保留央视+卫视
-            for name, link in matches:
-                clean_name = name.strip()
-                clean_link = link.strip()
-                if clean_name and clean_link and ("CCTV" in clean_name or "卫视" in clean_name):
-                    # 统一央视命名格式（兼容CCTV1/CCTV-1）
-                    if "CCTV" in clean_name:
-                        # 提取数字，统一为 CCTV-X 格式
-                        num_match = re.search(r'CCTV[ -]*(\d+)', clean_name)
-                        if num_match:
-                            clean_name = f"CCTV-{num_match.group(1)}"
-                    if clean_name not in raw_data:
-                        raw_data[clean_name] = []
-                    raw_data[clean_name].append(clean_link)
-        except:
-            print(f"❌ 接口 {idx}/4 超时/失败，跳过")
+            txt = resp.text
+
+            # 匹配两种格式：name,url 以及 #EXTINF:-1,name\nurl
+            items = re.findall(r"([^\n#]+?), *https?://[^\n]+", txt)
+            urls = re.findall(r"https?://\S+\.m3u8", txt)
+            names = re.findall(r"#EXTINF:-1[^,\n]*,([^\n]+)", txt)
+
+            pairs = []
+            pairs += re.findall(r"([^\n#]+?),(https?://\S+\.m3u8)", txt)
+            for n, u in zip(names, urls):
+                pairs.append((n.strip(), u.strip()))
+
+            for name, link in pairs:
+                name = name.strip()
+                link = link.strip()
+                if not name or not link:
+                    continue
+                if "CCTV" in name or "卫视" in name:
+                    # 统一央视格式为 CCTV-数字
+                    nm = re.sub(r"CCTV[ -]*0*(\d+)", r"CCTV-\1", name)
+                    if nm not in raw:
+                        raw[nm] = []
+                    raw[nm].append(link)
+        except Exception as e:
+            print(f"接口 {idx} 失败，跳过")
             continue
-    return raw_data
+    return raw
 
 # ======================
-# 3. 去重+合并+选最快线路
+# 去重 + 选可用线路
 # ======================
-def filter_best_sources(raw):
-    final_data = {}
+def filter_best(raw):
+    final = {}
     for name, links in raw.items():
-        # 第一步：去重链接
-        unique_links = list(set(links))
-        # 第二步：找第一个能用的链接（最快）
-        for link in unique_links:
+        uniq = list(set(links))
+        for link in uniq:
             if check_link(link):
-                final_data[name] = link
+                final[name] = link
                 break
-    return final_data
+    return final
 
 # ======================
-# 4. 自定义排序（央视按数字1-17，卫视按拼音）
+# 排序：CCTV1→2→3…
 # ======================
-def custom_sort(channels):
-    # 第一步：分离央视和卫视
-    cctv_channels = {}
-    satellite_channels = {}
-    for name, url in channels.items():
-        if "CCTV-" in name:
-            cctv_channels[name] = url
+def sort_channels(channels):
+    cctv = {}
+    wei = {}
+    for k, v in channels.items():
+        if k.startswith("CCTV-"):
+            cctv[k] = v
         else:
-            satellite_channels[name] = url
-    
-    # 第二步：央视按数字排序（CCTV-1→CCTV-2→CCTV-3...）
-    def cctv_sort_key(name):
-        num_match = re.search(r'CCTV-(\d+)', name)
-        return int(num_match.group(1)) if num_match else 99
-    
-    sorted_cctv = dict(sorted(cctv_channels.items(), key=lambda x: cctv_sort_key(x[0])))
-    
-    # 第三步：卫视按名称拼音排序
-    sorted_satellite = dict(sorted(satellite_channels.items()))
-    
-    # 第四步：合并（央视在前，卫视在后）
-    sorted_all = {}
-    sorted_all.update(sorted_cctv)
-    sorted_all.update(sorted_satellite)
-    
-    return sorted_all
+            wei[k] = v
+
+    def cctv_key(s):
+        g = re.search(r"CCTV-(\d+)", s)
+        return int(g.group(1)) if g else 999
+
+    cctv_sorted = sorted(cctv.items(), key=cctv_key)
+    wei_sorted = sorted(wei.items())
+    return dict(cctv_sorted + wei_sorted)
 
 # ======================
-# 主程序（严格匹配指定格式）
+# 主程序
 # ======================
 if __name__ == "__main__":
-    start_time = time.time()
-    print(f"🔍 开始拉取直播源（严格匹配 {GROUP_HEADER} 格式）...")
-    
-    # 拉取原始数据
-    raw_sources = pull_sources()
-    # 过滤有效源
-    valid_sources = filter_best_sources(raw_sources)
-    # 自定义排序（央视按数字，卫视按拼音）
-    sorted_sources = custom_sort(valid_sources)
-    
-    # 写入live.txt（严格按你指定的格式）
+    print("开始抓取直播源…")
+    raw = pull_sources()
+    valid = filter_best(raw)
+    sorted_ch = sort_channels(valid)
+
     with open("live.txt", "w", encoding="utf-8") as f:
-        # 第一行：灵鹿整合,#genre#
         f.write(f"{GROUP_HEADER}\n")
-        # 后续行：纯频道名,链接（无任何前缀）
-        for name, url in sorted_sources.items():
+        for name, url in sorted_ch.items():
             f.write(f"{name},{url}\n")
-    
-    # 输出结果，确认完成
-    cost_time = round(time.time() - start_time, 2)
-    print(f"✅ 格式匹配完成！")
-    print(f"⏱️  总耗时：{cost_time} 秒")
-    print(f"📺 有效频道数：{len(sorted_sources)} 个（严格按指定格式生成）")
+
+    print(f"✅ 完成！有效频道：{len(sorted_ch)} 个")
