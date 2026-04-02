@@ -1,25 +1,34 @@
 name: 灵鹿直播源自动更新
+
+# 触发：12小时定时 + 手动可点运行
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
 
 jobs:
-  build:
+  run-spider:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 配置Python环境
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install dependencies
+
+      - name: 安装依赖
         run: pip install requests
-      - name: Run main.py
+
+      - name: 执行采集整理脚本
         run: python main.py
-      - name: Commit and push
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: 自动更新直播源
-          add: live.txt
+
+      - name: 提交更新文件回仓库
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add live.txt result.txt
+          git commit -m "自动更新直播源 定时12h任务" || echo "无变更无需提交"
+          git push
 
