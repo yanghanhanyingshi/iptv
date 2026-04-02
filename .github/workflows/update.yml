@@ -19,7 +19,8 @@ jobs:
           python-version: '3.11'
 
       - name: 安装依赖
-        run: pip install requests
+        run: pip install -r requirements.txt
+
 
       - name: 执行采集整理脚本
         run: python main.py
