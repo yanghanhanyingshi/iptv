@@ -1,4 +1,5 @@
 灵鹿整合,#genre#
+更新时间：2026-04-03 10:15:35
 CCTV1,http://hlsztemgsplive.miguvideo.com:8080/wd_r2/cctv/cctv1hd/600/index.m3u8?msisdn=20260403040204dcfc1db261104b9fbb8bfaf2efeedb21&mdspid=&spid=699004&netType=0&sid=2201057821&pid=2028597139&timestamp=20260403040204&Channel_ID=0116_2600000900-99000-201600010010027&ProgramID=608807420&ParentNodeID=-99&assertID=2201057821&client_ip=171.8.79.254&SecurityKey=20260403040204&promotionId=&mvid=2201057821&mcid=500020&playurlVersion=WX-A1-9.3.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=a9f164ee6eed958daadc414a998486e5
 CCTV1,https://zby.130519.xyz/PLTV/11/224/3221225673/index.m3u8
 CCTV1,http://t.061899.xyz/tl/tl.php?id=cctv1
@@ -102,6 +103,7 @@ CCTV9,http://t.061899.xyz/tl/tl.php?id=cctv9
 CCTV9,http://m.061899.xyz/mg/cctv9
 CCTV9,http://101.66.198.87:9901/tsfile/live/0009_1.m3u8?key=txiptv&playlive=0&authid=0
 CCTV9,http://112.123.243.37:50085/tsfile/live/0010_1.m3u8?key=txiptv&playlive=0&authid=0
+CCTV9,http://43.156.8.127:5050/ysp?id=2024078601&pid=600004078&q=fhd
 CCTV9,http://125.42.148.11:9901/tsfile/live/1005_1.m3u8?key=txiptv&playlive=1&authid=0
 CCTV9,http://125.42.150.102:9901/tsfile/live/1005_1.m3u8?key=txiptv&playlive=1&authid=0
 CCTV9,http://183.223.157.33:9901/tsfile/live/0009_1.m3u8?key=txiptv&playlive=1&authid=0
@@ -141,7 +143,6 @@ CCTV13,http://hlsztemgsplive.miguvideo.com:8080/envivo_x/2018/SD/cctv13/1000/ind
 CCTV13,https://zby.130519.xyz/PLTV/11/224/3221226128/index.m3u8
 CCTV13,http://t.061899.xyz/tl/tl.php?id=cctv13
 CCTV13,http://m.061899.xyz/mg/cctv13
-CCTV13,http://43.156.8.127:5050/ysp?id=2029797201&pid=600001811&q=fhd
 CCTV13,https://cdn13.178.indevs.in/163189/790bc5f7f0f06879
 CCTV13,http://125.42.148.186:9901/tsfile/live/1012_1.m3u8?key=txiptv&playlive=1&authid=0
 CCTV13,http://183.223.157.33:9901/tsfile/live/0013_1.m3u8?key=txiptv&playlive=1&authid=0
@@ -187,6 +188,8 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 北京卫视,http://121.19.134.216:808/tsfile/live/1015_1.m3u8?key=txiptv&playlive=1&authid=0
 北京卫视,http://115.48.160.246:9901/tsfile/live/0122_1.m3u8?key=txiptv&playlive=1&authid=0
 北京卫视,http://112.234.23.157:9901/tsfile/live/0122_1.m3u8?key=txiptv&playlive=1&authid=0
+北京卫视,http://117.86.48.47:7777/rtp/239.49.0.253:8000
+北京卫视,http://117.86.48.47:7777/rtp/239.49.0.42:8000
 天津卫视,https://zby.130519.xyz/PLTV/11/224/3221225742/index.m3u8
 天津卫视,http://43.156.8.127:5050/ysp?id=2019927003&pid=600152137&q=fhd
 天津卫视,http://125.42.148.11:9901/tsfile/live/0130_1.m3u8?key=txiptv&playlive=1&authid=0
@@ -237,6 +240,7 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 辽宁卫视,http://gfr.x3322.net:9901/tsfile/live/1097_1.m3u8
 辽宁卫视,http://153.0.171.163:9901/tsfile/live/0121_1.m3u8?key=txiptv&playlive=1&authid=0
 辽宁卫视,http://61.136.172.236:9901/tsfile/live/0121_1.m3u8?key=txiptv&playlive=1&authid=0
+辽宁卫视,http://117.86.48.47:7777/rtp/239.49.8.48:8000
 吉林卫视,http://hlsztemgsplive.miguvideo.com:8080/envivo_v/2018/SD/jilin/1000/index.m3u8?msisdn=20260403040211646a284ff3f648f583cc162b6ccc704f&mdspid=&spid=600633&netType=0&sid=5910022164&pid=2028597139&timestamp=20260403040211&Channel_ID=0116_2600000900-99000-201600010010027&ProgramID=947472500&ParentNodeID=-99&assertID=5910022164&client_ip=171.8.79.254&SecurityKey=20260403040211&promotionId=&mvid=5900004357&mcid=500020&playurlVersion=WX-A1-9.3.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=ab593cc7379991fca816449b5f725fd9
 吉林卫视,https://zby.130519.xyz/PLTV/11/224/3221226149/index.m3u8
 吉林卫视,http://t.061899.xyz/tl/tl.php?id=jlws
@@ -257,6 +261,8 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 黑龙江卫视,http://61.136.172.236:9901/tsfile/live/0143_1.m3u8?key=txiptv&playlive=1&authid=0
 黑龙江卫视,http://113.25.252.226:9901/tsfile/live/1038_1.m3u8?key=txiptv&playlive=1&authid=0
 黑龙江卫视,http://121.19.134.216:808/tsfile/live/1020_1.m3u8?key=txiptv&playlive=1&authid=0
+黑龙江卫视,http://117.86.48.47:7777/rtp/239.49.8.14:9426
+黑龙江卫视,http://117.86.48.47:7777/rtp/239.49.8.144:6000
 东方卫视,http://hlsztemgsplive.miguvideo.com:8080/wd_r4/dfl/dongfangwshd/600/index.m3u8?msisdn=20260403060204e746ffdf933f45b68deb0e59e0cfff6c&mdspid=&spid=600697&netType=0&sid=5910022185&pid=2028597139&timestamp=20260403060204&Channel_ID=0116_2600000900-99000-201600010010027&ProgramID=651632648&ParentNodeID=-99&assertID=5910022185&client_ip=171.8.79.254&SecurityKey=20260403060204&promotionId=&mvid=5100043384&mcid=500020&playurlVersion=WX-A1-9.3.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=3e72b120d424f39ef11b618960f00c41
 东方卫视,https://zby.130519.xyz/PLTV/11/224/3221225725/index.m3u8
 东方卫视,http://t.061899.xyz/tl/tl.php?id=dfws
@@ -264,6 +270,7 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 东方卫视,https://txmov2.a.kwimgs.com/bs3/video-hls/5219953535631090825_hlsb.m3u8
 东方卫视,http://23.237.228.134/live3/dongfang.m3u8
 东方卫视,http://bp-resource-dfl.bestv.cn/155/3/video.m3u8
+东方卫视,http://43.156.8.127:5050/ysp?id=2024054503&pid=600002483&q=fhd
 东方卫视,http://125.42.148.11:9901/tsfile/live/0127_1.m3u8?key=txiptv&playlive=1&authid=0
 东方卫视,http://125.42.148.186:9901/tsfile/live/0127_1.m3u8?key=txiptv&playlive=1&authid=0
 东方卫视,http://bp-resource-dfl.bestv.cn/148/3/video.m3u8
@@ -358,6 +365,7 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 广东卫视,http://125.42.150.102:9901/tsfile/live/0118_1.m3u8?key=txiptv&playlive=1&authid=0
 广东卫视,http://153.0.171.163:9901/tsfile/live/0125_1.m3u8?key=txiptv&playlive=1&authid=0
 广东卫视,http://222.214.208.34:59901/tsfile/live/0125_1.m3u8
+广东卫视,http://117.86.48.47:7777/rtp/239.49.1.26:8000
 广西卫视,https://zby.130519.xyz/PLTV/11/224/3221226084/index.m3u8
 广西卫视,http://t.061899.xyz/tl/tl.php?id=gxws
 广西卫视,http://101.66.198.170:9901/tsfile/live/0113_1.m3u8?key=txiptv&playlive=0&authid=0
@@ -418,6 +426,7 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 陕西卫视,http://43.156.8.127:5050/ysp?id=2029795103&pid=600190400&q=fhd
 陕西卫视,http://153.0.171.163:9901/tsfile/live/0136_1.m3u8?key=txiptv&playlive=1&authid=0
 陕西卫视,http://219.146.95.58:59902/tsfile/live/0136_1.m3u8?txiptv
+陕西卫视,http://117.86.48.47:7777/rtp/239.49.1.74:8000
 甘肃卫视,https://zby.130519.xyz/PLTV/11/224/3221226090/index.m3u8
 甘肃卫视,http://t.061899.xyz/tl/tl.php?id=gsws
 甘肃卫视,http://112.123.243.37:50085/tsfile/live/0123_1.m3u8?key=txiptv&playlive=0&authid=0
@@ -436,6 +445,7 @@ CCTV17,http://123.114.99.216:4022/rtp/239.3.1.151:8144
 青海卫视,http://115.48.160.246:9901/tsfile/live/0140_1.m3u8?key=txiptv&playlive=1&authid=0
 青海卫视,http://112.234.23.157:9901/tsfile/live/0140_1.m3u8?key=txiptv&playlive=1&authid=0
 青海卫视,http://36.136.38.87:9901/tsfile/live/0003_1.m3u8?key=txiptv&playlive=1&authid=0
+青海卫视,http://117.86.48.47:7777/rtp/239.49.0.81:8000
 宁夏卫视,http://hlsztemgsplive.miguvideo.com:8080/envivo_x/2018/SD/ningxia/1000/index.m3u8?msisdn=202604030402120d376aad2ca04c15be0ead98168d078d&mdspid=&spid=600697&netType=0&sid=5910022262&pid=2028597139&timestamp=20260403040212&Channel_ID=0116_2600000900-99000-201600010010027&ProgramID=738910535&ParentNodeID=-99&assertID=5910022262&client_ip=171.8.79.254&SecurityKey=20260403040212&promotionId=&mvid=5900004337&mcid=500020&playurlVersion=WX-A1-9.3.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=baa5b44f83b03782bb622e8d599c0c6f
 宁夏卫视,http://t.061899.xyz/tl/tl.php?id=nxws
 宁夏卫视,http://112.123.243.37:50085/tsfile/live/0125_1.m3u8?key=txiptv&playlive=0&authid=0
