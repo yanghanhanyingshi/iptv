@@ -10,12 +10,7 @@ headers = {
 
 # 采集源地址
 SOURCES = [
-    "https://cloud.7so.top/f/Bgw1H8/%E5%A4%A7%E6%94%B9.txt",
-    "https://wget.la/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg1.m3u",
-    "https://wget.la/https://github.com/fafa002/yf2025/blob/main/yiyifafa.txt",
-    "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/卫视/output/ipv4/result.txt",
-    "https://wget.la/https://github.com/adminouyang/231006/blob/main/py/TV/output/ipv4/result.txt",
-    "https://dsj-131269435.cos.ap-guangzhou.myqcloud.com/dsj10.1.txt"
+    "https://wget.la/https://github.com/yanghanhanyingshi/JYYS/blob/main/live.txt"
 ]
 
 # CCTV完整别名映射
