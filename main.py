@@ -112,6 +112,8 @@ def main():
     now_time = get_beijing_now()
     print(f"脚本运行北京时间：{now_time}")
 
+    demo_url = "http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8"
+
     # 1.全量抓取合并
     all_raw = []
     for src in SOURCES:
@@ -138,23 +140,20 @@ def main():
         ok_uris = batch_filter_urls(unique_uris)
         valid_map[chn] = ok_uris
 
-    # 4.严格按你要的示例格式输出
-    demo_url = "http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8"
-    out_lines = [
-        "灵鹿整合,#genre#",
-        f"{now_time},{demo_url}"
-    ]
-    raw_all_lines = [
-        "灵鹿整合,#genre#",
-        f"{now_time},{demo_url}"
-    ]
+    # 4.先写分组+所有频道，时间放最后
+    out_lines = ["灵鹿整合,#genre#"]
+    raw_all_lines = ["灵鹿整合,#genre#"]
 
-    # 后面原有频道源完全不变
+    # 填充频道
     for chn in ALL_ORDER:
         for vu in valid_map[chn]:
             out_lines.append(f"{chn},{vu}")
         for ru in channel_map[chn]:
             raw_all_lines.append(f"{chn},{ru}")
+
+    # 频道写完 → 末尾追加时间行
+    out_lines.append(f"{now_time},{demo_url}")
+    raw_all_lines.append(f"{now_time},{demo_url}")
 
     # 5.双文件落地
     save_file(out_lines, "live.txt")
