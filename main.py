@@ -1,11 +1,15 @@
 import requests
 import re
 import time
+from datetime import datetime, timedelta, timezone
 from concurrent.futures import ThreadPoolExecutor
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
+
+# 北京时间时区固定 UTC+8
+BEIJING_TZ = timezone(timedelta(hours=8))
 
 # 采集源地址
 SOURCES = [
@@ -32,6 +36,10 @@ ALL_ORDER = CCTV_ORDER + WEISHI_ORDER
 # 测速超时配置
 TEST_TIMEOUT = 3
 MAX_WORKERS = 30
+
+def get_beijing_now():
+    """获取标准北京时间"""
+    return datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S")
 
 def fetch_text(url):
     """抓取源文本"""
@@ -104,6 +112,10 @@ def save_file(content_list, fname):
         f.write("\n".join(content_list))
 
 def main():
+    # 只生成一次北京时间，全程复用
+    now_time = get_beijing_now()
+    print(f"脚本运行北京时间：{now_time}")
+
     # 1.全量抓取合并
     all_raw = []
     for src in SOURCES:
@@ -114,7 +126,6 @@ def main():
 
     # 2.标准化归类
     channel_map = {k:[] for k in ALL_ORDER}
-    name_url_dict = {}
     for nm, url in all_raw:
         std_nm = normalize_name(nm)
         if std_nm in channel_map:
@@ -131,9 +142,15 @@ def main():
         ok_uris = batch_filter_urls(unique_uris)
         valid_map[chn] = ok_uris
 
-    # 4.生成标准输出内容
-    out_lines = ["灵鹿整合,#genre#"]
-    raw_all_lines = ["灵鹿整合,#genre#"]
+    # 4.生成标准输出内容 + 头部北京时间
+    out_lines = [
+        "灵鹿整合,#genre#",
+        f"更新时间：{now_time}"
+    ]
+    raw_all_lines = [
+        "灵鹿整合,#genre#",
+        f"更新时间：{now_time}"
+    ]
     for chn in ALL_ORDER:
         # 测速后可用：live.txt
         for vu in valid_map[chn]:
@@ -146,9 +163,11 @@ def main():
     save_file(out_lines, "live.txt")
     save_file(raw_all_lines, "result.txt")
 
-    print(f"✅ 处理完成！有效可用源: {len(out_lines)-1} 条")
+    print(f"✅ 处理完成！文件更新北京时间：{now_time}")
+    print(f"✅ 有效可用源: {len(out_lines)-2} 条")
     print("已生成: live.txt(测速可用) + result.txt(原始全量未测速)")
-    print("🔔 可配置GitHub Actions 12小时Cron定时自动爬取更新")
+    print("🔔 GitHub Actions记得加时区 env: TZ: Asia/Shanghai")
 
 if __name__ == "__main__":
     main()
+
