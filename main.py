@@ -112,7 +112,7 @@ def main():
     now_time = get_beijing_now()
     print(f"脚本运行北京时间：{now_time}")
 
-    demo_url = "http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8"
+    demo_url = "https://d.kstore.dev/download/7547/20260401003530.mp4"
 
     # 1.全量抓取合并
     all_raw = []
