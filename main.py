@@ -163,8 +163,8 @@ def main():
         valid_map[chn] = ok_uris
 
     # 5.先写分组+所有频道，时间不放头部、统一放末尾
-    out_lines = ["家用频道,#genre#"]
-    raw_all_lines = ["家用频道,#genre#"]
+    out_lines = ["灵鹿整合,#genre#"]
+    raw_all_lines = ["灵鹿整合,#genre#"]
 
     for chn in ALL_ORDER:
         show_name = CCTV_NAME_FULL.get(chn, chn)
