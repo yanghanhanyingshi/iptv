@@ -1,9 +1,9 @@
 name: 灵鹿直播源自动更新
 
-# 触发：3小时定时 + 手动可点运行
+# 触发：6小时定时 + 手动可点运行
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -32,6 +32,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add live.txt result.txt
-          git commit -m "自动更新直播源 定时3h任务" || echo "无变更无需提交"
+          git commit -m "自动更新直播源 定时6h任务" || echo "无变更无需提交"
           git push
 
