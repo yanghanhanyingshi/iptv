@@ -38,8 +38,8 @@ TEST_TIMEOUT = 3
 MAX_WORKERS = 30
 
 def get_beijing_now():
-    """获取标准北京时间"""
-    return datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S")
+    """格式化为：20260403 04:23"""
+    return datetime.now(BEIJING_TZ).strftime("%Y%m%d %H:%M")
 
 def fetch_text(url):
     """抓取源文本"""
@@ -108,7 +108,7 @@ def save_file(content_list, fname):
         f.write("\n".join(content_list))
 
 def main():
-    # 只生成一次北京时间
+    # 只生成一次北京时间 格式：20260403 04:23
     now_time = get_beijing_now()
     print(f"脚本运行北京时间：{now_time}")
 
@@ -138,16 +138,18 @@ def main():
         ok_uris = batch_filter_urls(unique_uris)
         valid_map[chn] = ok_uris
 
-    # 4.核心正确写法：分组+注释时间 ❌不搞假分组
+    # 4.严格按你要的示例格式输出
+    demo_url = "http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8"
     out_lines = [
         "灵鹿整合,#genre#",
-        f"# 更新时间：{now_time}"   # 加#注释，播放器忽略、肉眼看得见
+        f"{now_time},{demo_url}"
     ]
     raw_all_lines = [
         "灵鹿整合,#genre#",
-        f"# 更新时间：{now_time}"
+        f"{now_time},{demo_url}"
     ]
 
+    # 后面原有频道源完全不变
     for chn in ALL_ORDER:
         for vu in valid_map[chn]:
             out_lines.append(f"{chn},{vu}")
@@ -158,9 +160,8 @@ def main():
     save_file(out_lines, "live.txt")
     save_file(raw_all_lines, "result.txt")
 
-    print(f"✅ 处理完成！文件更新北京时间：{now_time}")
+    print(f"✅ 处理完成！时间戳：{now_time}")
     print(f"✅ 有效可用源: {len(out_lines)-2} 条")
 
 if __name__ == "__main__":
     main()
-
