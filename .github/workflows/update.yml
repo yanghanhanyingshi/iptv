@@ -3,7 +3,7 @@ name: 灵鹿直播源自动更新
 # 触发：12小时定时 + 手动可点运行
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 jobs:
