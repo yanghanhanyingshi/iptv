@@ -462,4 +462,4 @@ CCTV17,http://1.24.39.180:9003/hls/61/index.m3u8
 新疆卫视,http://36.32.174.67:60080/newlive/live/hls/47/live.m3u8
 旅游卫视,http://112.123.243.37:50085/tsfile/live/0138_1.m3u8?key=txiptv&playlive=0&authid=0
 旅游卫视,http://36.136.38.87:9901/tsfile/live/0114_1.m3u8?key=txiptv&playlive=1&authid=0
-20260403 20:46,https://d.kstore.dev/download/7547/20260401003530.mp4
+20260403 21:16,https://d.kstore.dev/download/7547/20260401003530.mp4
