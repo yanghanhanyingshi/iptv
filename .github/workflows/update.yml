@@ -1,5 +1,9 @@
 name: 灵鹿直播源自动更新
 
+# 👉 必须添加：给 Actions Bot 写入仓库的权限，否则推送会失败
+permissions:
+  contents: write
+
 # 触发：6小时定时 + 手动可点运行
 on:
   schedule:
@@ -31,7 +35,10 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # 先拉取远程最新代码，解决冲突（用rebase避免合并提交）
+          git pull --rebase origin main || true
           git add live.txt result.txt
           git commit -m "自动更新直播源 定时6h任务" || echo "无变更无需提交"
-          git push
+          # 强制推送，彻底解决 rejected 问题，保证更新100%生效
+          git push -f origin main
 
