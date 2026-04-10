@@ -10,7 +10,8 @@ headers = {
 
 # 采集源地址
 SOURCES = [
-    "https://wget.la/https://github.com/yanghanhanyingshi/JYYS/blob/main/live.txt"
+    "https://wget.la/https://github.com/yanghanhanyingshi/JYYS/blob/main/live.txt",
+    "https://wget.la/https://github.com/yanghanhanyingshi/JYYS/blob/main/live_sources.m3u"
 ]
 
 # CCTV完整别名映射
