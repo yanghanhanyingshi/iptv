@@ -35,6 +35,10 @@ CCTV_NAME_FULL = {
     "CCTV17": "CCTV17农业农村"
 }
 
+# 香港台匹配关键词
+HK_KEYWORDS = ["香港", "TVB", "翡翠台", "明珠台", "凤凰香港", "港台", "无线", "星河频道", "TVB8", "TVB星河",
+               "香港开电视", "香港国际", "香港卫视", "now新闻", "有线新闻", "RTHK"]
+
 # 少儿卡通列表（不含CCTV14，CCTV14留在央视区）
 KID_ANIME_LIST = [
     "金鹰卡通","卡酷少儿","优漫卡通","哈哈炫动","嘉佳卡通",
@@ -116,10 +120,24 @@ def normalize_name(name):
     if "河北少儿科教" in name: return "河北少儿科教"
     if "辽宁青少" in name: return "辽宁教育·青少"
 
+    # 香港台标准化名称
+    for kw in HK_KEYWORDS:
+        if kw in name:
+            return name.strip()
+
     for ws in WEISHI_ORDER:
         if ws in name:
             return ws
     return name
+
+# 判断是否为香港台
+def is_hongkong_channel(name):
+    if not name:
+        return False
+    for kw in HK_KEYWORDS:
+        if kw in name:
+            return True
+    return False
 
 def check_url_alive(uri):
     try:
@@ -156,7 +174,7 @@ def main():
     CURRENT_BJ_TIME = get_beijing_time()
     print(f"脚本运行北京时间：{CURRENT_BJ_TIME}")
 
-    time_url = "http://niuniuyun.ccwu.cc/T/Videos/20260415.mp4"
+    time_url = "https://d.kstore.dev/download/7547/20260401003530.mp4"
 
     all_raw = []
     for src in SOURCES:
@@ -166,19 +184,29 @@ def main():
         all_raw.extend(chs)
 
     channel_map = {k:[] for k in ALL_ORDER}
+    hk_map = {}
     kid_map     = {k:[] for k in KID_ANIME_LIST}
 
     for nm, url in all_raw:
         std_nm = normalize_name(nm)
+        # 少儿频道
         if std_nm in kid_map:
             kid_map[std_nm].append(url)
+        # 央视卫视
         if std_nm in channel_map:
             channel_map[std_nm].append(url)
+        # 香港频道
+        if is_hongkong_channel(nm):
+            if std_nm not in hk_map:
+                hk_map[std_nm] = []
+            hk_map[std_nm].append(url)
 
     print("开始多线程测速过滤死链...")
     valid_map = {}
+    hk_valid_map = {}
     kid_valid_map = {}
 
+    # 过滤央视卫视
     for chn, uris in channel_map.items():
         if not uris:
             valid_map[chn] = []
@@ -187,6 +215,16 @@ def main():
         ok_uris = batch_filter_urls(unique_uris)
         valid_map[chn] = ok_uris
 
+    # 过滤香港频道
+    for chn, uris in hk_map.items():
+        if not uris:
+            hk_valid_map[chn] = []
+            continue
+        unique_uris = list(dict.fromkeys(uris))
+        ok_uris = batch_filter_urls(unique_uris)
+        hk_valid_map[chn] = ok_uris
+
+    # 过滤少儿频道
     for chn, uris in kid_map.items():
         if not uris:
             kid_valid_map[chn] = []
@@ -195,15 +233,13 @@ def main():
         ok_uris = batch_filter_urls(unique_uris)
         kid_valid_map[chn] = ok_uris
 
-    # 严格按你指定顺序组装
+    # 严格按指定顺序组装
     out_lines = []
     raw_all_lines = []
 
-    # 1.总分组头
+    # 1. 央视卫视分组
     out_lines.append("央视卫视,#genre#")
     raw_all_lines.append("央视卫视,#genre#")
-
-    # 2.CCTV+卫视全部（含CCTV14少儿）
     for chn in ALL_ORDER:
         show_name = CCTV_NAME_FULL.get(chn, chn)
         for idx, vu in enumerate(valid_map[chn], 1):
@@ -211,7 +247,16 @@ def main():
         for idx, ru in enumerate(channel_map[chn], 1):
             raw_all_lines.append(f"{chn},{ru}$LR•IPV4•29『线路{idx}』")
 
-    # 3.少儿动画分组头+列表
+    # 2. 香港频道分组
+    out_lines.append("香港频道,#genre#")
+    raw_all_lines.append("香港频道,#genre#")
+    for chn in hk_valid_map:
+        for idx, vu in enumerate(hk_valid_map[chn], 1):
+            out_lines.append(f"{chn},{vu}$LR•IPV4•29『线路{idx}』")
+        for idx, ru in enumerate(hk_map.get(chn, []), 1):
+            raw_all_lines.append(f"{chn},{ru}$LR•IPV4•29『线路{idx}』")
+
+    # 3. 少儿动画分组
     out_lines.append("少儿动画,#genre#")
     raw_all_lines.append("少儿动画,#genre#")
     for chn in KID_ANIME_LIST:
@@ -220,18 +265,16 @@ def main():
         for idx, ru in enumerate(kid_map[chn], 1):
             raw_all_lines.append(f"{chn},{ru}$LR•IPV4•29『线路{idx}』")
 
-    # 4.更新时间分组头 + 时间行
+    # 4. 更新时间
     out_lines.append("灵鹿整合,#genre#")
     out_lines.append(f"{CURRENT_BJ_TIME},{time_url}")
-
     raw_all_lines.append("灵鹿整合,#genre#")
     raw_all_lines.append(f"{CURRENT_BJ_TIME},{time_url}")
 
     save_file(out_lines, "live.txt")
     save_file(raw_all_lines, "result.txt")
 
-    print("✅ 结构完全对齐：央视卫视→央视卫视→少儿动画→灵鹿整合")
+    print("✅ 结构完全对齐：央视卫视→香港频道→少儿动画→灵鹿整合")
 
 if __name__ == "__main__":
     main()
-
