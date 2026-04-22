@@ -174,7 +174,7 @@ def main():
     CURRENT_BJ_TIME = get_beijing_time()
     print(f"脚本运行北京时间：{CURRENT_BJ_TIME}")
 
-    time_url = "http://niuniuyun.ccwu.cc/T/Videos/20260415.mp4"
+    time_url = "https://niuniupan.ccwu.cc/api/raw/1776872653774_saoma.mp4"
 
     all_raw = []
     for src in SOURCES:
