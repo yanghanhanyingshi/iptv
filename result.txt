@@ -1608,4 +1608,4 @@ TVB Plus,http://2:2@113.89.101.85:9981/stream/channelid/1354578766?profile=htsp$
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 成都少儿,http://183.214.23.16:2380/hw1live.rxip.sc96655.com.huan.tv/live/CDTV-6_2000.m3u8$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 灵鹿整合,#genre#
-20260423 11:32,https://niuniupan.ccwu.cc/api/raw/1776872653774_saoma.mp4
+20260423 16:06,https://niuniupan.ccwu.cc/api/raw/1776872653774_saoma.mp4
