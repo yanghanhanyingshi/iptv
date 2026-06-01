@@ -1208,4 +1208,4 @@ TVB Plus,https://iptv.852851.xyz/ch/c5b298dd4959390d55e5028330511be1/master.m3u8
 江西少儿,http://192.151.150.154/live/jxtv6.m3u8$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 灵鹿整合,#genre#
-20260601 12:59,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260601 19:49,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
