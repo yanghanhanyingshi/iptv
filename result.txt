@@ -1203,4 +1203,4 @@ TVBS歡樂台,https://4gtv.158.qzz.io/163189/1e0bdf17-436e-40d9-b442-ca3e2bf3d1d
 重庆少儿,http://38.75.136.137:98/gslb/dsdqpub/cqse.m3u8?auth=testpub$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 江西少儿,http://107.150.60.122/live/jxtv6.m3u8$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 灵鹿整合,#genre#
-20260605 12:24,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260605 18:03,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
