@@ -1256,4 +1256,4 @@ TVB Jade,https://iptv.852851.xyz/ch/6465962c575c09cd87e5fb873dfdb7aa/master.m3u8
 江西少儿,http://192.151.150.154/live/jxtv6.m3u8$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 灵鹿整合,#genre#
-20260609 12:10,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260609 17:56,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
