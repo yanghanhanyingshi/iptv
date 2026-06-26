@@ -1142,6 +1142,7 @@ CCTV17农业农村,https://live.264788.xyz/channel/cctv17?streamid=12e368efbd799
 新疆卫视,https://iptv.catvod.com/live.php?id=%E6%96%B0%E7%96%86%E5%8D%AB%E8%A7%86&line=2$LR•IPV4•29『线路16』$LR•IPV4•29『线路16』
 新疆卫视,https://iptv.catvod.com/live.php?id=%E6%96%B0%E7%96%86%E5%8D%AB%E8%A7%86&line=3$LR•IPV4•29『线路17』$LR•IPV4•29『线路17』
 香港频道,#genre#
+Dj钟仔-全粤语Electro风格港台情歌对碰吴雨霏vs关心妍DJ串烧,https://mp4.djuu.com/c2/16/2025/0c30fc654c36ebe2.m4a$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 TVB plus备,https://vdm6-hw.nbgdsygs.com/live/h6-2.flv$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 翡翠台,http://o11.163189.xyz/stream/tvb/fct/$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 翡翠台,http://mytv.cdn.loc.cc/o12.php?id=fct$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
@@ -1247,4 +1248,4 @@ TVBS新闻,http://jnzq.ohoyee.com:9080/live/332123-tvbsxw.m3u8$LR•IPV4•29『
 江西少儿,http://192.151.150.154/live/jxtv6.m3u8$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 灵鹿整合,#genre#
-20260626 12:17,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260626 17:40,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
