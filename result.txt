@@ -1205,6 +1205,7 @@ TVBS新闻,http://jnzq.ohoyee.com:9080/live/332123-tvbsxw.m3u8$LR•IPV4•29『
 经典香港电影,http://mg.cttv.vip/625703337$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 经典香港电影,http://wfenf.x3322.net:7788/625703337$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 【快看张不疯】带你看香港经典电影,https://www.goodiptv.club/douyu/8413226$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
+老牌香港明星的最全八卦,https://www.goodiptv.club/douyu/9970047$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 香港院线大片-最新,https://live.ottiptv.cc/yy/1354936242$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 香港第三台,https://rthkaudio3-lh.akamaihd.net/i/radio3_1@355866/master.m3u8$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
 香港古典音乐,https://rthkradio1-live.akamaized.net/hls/live/2035313/radio1/master.m3u8?sd=10&rebase=on$LR•IPV4•29『线路1』$LR•IPV4•29『线路1』
@@ -1280,4 +1281,4 @@ TVBS新闻,http://jnzq.ohoyee.com:9080/live/332123-tvbsxw.m3u8$LR•IPV4•29『
 江西少儿,http://192.151.150.154/live/jxtv6.m3u8$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 灵鹿整合,#genre#
-20260628 03:38,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260628 12:26,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
