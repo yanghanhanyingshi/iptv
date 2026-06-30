@@ -1290,4 +1290,4 @@ TVBS台劇台,http://4gtv.cnlive.club/channel/49342c47/index.m3u8?q=178263988583
 江西少儿,http://192.151.150.154/live/jxtv6.m3u8$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 灵鹿整合,#genre#
-20260630 17:53,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260630 22:33,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
