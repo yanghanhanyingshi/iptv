@@ -1244,4 +1244,4 @@ TVBS新闻,http://jnzq.ohoyee.com:9080/live/332332-tvbsxw.m3u8$LR•IPV4•29『
 江西少儿,http://192.151.150.154/live/jxtv6.m3u8$LR•IPV4•29『线路2』$LR•IPV4•29『线路2』
 江西少儿,http://198.204.228.26/live/jxtv6.m3u8$LR•IPV4•29『线路3』$LR•IPV4•29『线路3』
 灵鹿整合,#genre#
-20260706 15:45,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
+20260706 15:49,http://yanghanhan.xyzvip.cn/TV/saoma.mp4
