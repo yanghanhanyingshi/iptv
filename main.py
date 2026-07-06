@@ -13,7 +13,7 @@ SOURCES = [
     "https://wget.la/https://github.com/yanghanhanyingshi/JYYS/blob/main/live.txt",
     "https://dianshi.xinlingmiyu520.workers.dev/abc123",
     "https://gh-proxy.org/https://github.com/yanghanhanyingshi/JYYS/blob/main/live_sources.m3u"
-    "https://fghdfhgfj64845fg485f4gh545g5f4zxcfdx.pages.dev/live.m3u"
+    "https://tv.88888888888888888888888888888888888.ccwu.cc/live.m3u"
 ]
 
 # CCTV完整别名映射
