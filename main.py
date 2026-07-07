@@ -14,6 +14,7 @@ SOURCES = [
     "https://dianshi.xinlingmiyu520.workers.dev/abc123",
     "https://gh-proxy.org/https://github.com/yanghanhanyingshi/JYYS/blob/main/live_sources.m3u",
     "https://restless-rice-b2a2.ganpig.workers.dev/cfdownload/https://tv.88888888888888888888888888888888888.ccwu.cc/live.m3u"
+    "https://g.blfrp.cn/https://raw.githubusercontent.com/cyh92/live/refs/heads/main/source/migu.m3u"
 ]
 
 # CCTV完整别名映射
