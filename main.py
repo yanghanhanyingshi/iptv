@@ -420,7 +420,7 @@ def main():
     print(f"脚本运行北京时间：{CURRENT_BJ_TIME}")
     print("=" * 60)
 
-    time_url = "http://yanghanhan.xyzvip.cn/TV/saoma.mp4"
+    time_url = "https://p.666888666.kdns.fr/视频/1/20260415.mp4"
 
     all_raw = []
     for src in SOURCES:
