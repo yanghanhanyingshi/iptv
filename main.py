@@ -16,7 +16,8 @@ SOURCES = [
     "https://live.445569.xyz/live.m3u",
     "http://wangziduoqing.com/yuan/zb.txt",
     "https://gh-proxy.org/https://github.com/yanghanhanyingshi/JYYS/blob/main/live_sources.m3u",
-    "https://restless-rice-b2a2.ganpig.workers.dev/cfdownload/https://tv.88888888888888888888888888888888888.ccwu.cc/live.m3u"
+    "https://raw.githubusercontent.com/wymstar/ttv/refs/heads/main/live.txt",
+    "https://tv.88888888888888888888888888888888888.ccwu.cc/live.m3u",
     "https://g.blfrp.cn/https://raw.githubusercontent.com/cyh92/live/refs/heads/main/source/migu.m3u"
 ]
 
