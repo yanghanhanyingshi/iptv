@@ -37,7 +37,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           # 先拉取远程最新代码，解决冲突（用rebase避免合并提交）
           git pull --rebase origin main || true
-          git add live.txt result.txt
+          git add live.txt result.txtt live.m3u
           git commit -m "自动更新直播源 定时6h任务" || echo "无变更无需提交"
           # 强制推送，彻底解决 rejected 问题，保证更新100%生效
           git push -f origin main
