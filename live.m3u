@@ -204,9 +204,9 @@ http://114.254.38.234:8888/rtp/239.3.1.60:8084
 #EXTINF:-1 group-title="央视卫视",CCTV2财经
 http://74.91.26.218:82/live/cctv2hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV2财经
-http://txycdn5.video.qq.com/1370417302.m3u8?time=1788247068&from=player&cdn=tcloud&sdtfrom=v401010931632&platform=4010603&butype=31&HLSP2P=1&vkey=nvkey_AQQgIOD67JDe-5xAxZqmSBFm7ve1247Lp1EA1YBorDPI4N2IEGZhtVbLw_FWoPqup6CpYxABcBZIiTAoqkIfPX9iu0hmTE69WthyTQcOCTCiInR8aZk-Np3T-Txdk42acaUStbRCGKwE1FmlPF-B6hpfxnkPfj_sx4T8XygPLrRFBBkowwk1cKuSgFzuTv149O_LFR3rHtDC-rh2rJafJsR4S4rXywXY9LwbwfpvCvbqrRSYm6KFzyAC2ixUEJQSYrk6g0wQ7yWb3G-QfnSM2QuEsgR8Z6qiz4j_cHaVprssMfrY1m5MaFZGW1Jgw7lJuTaPa1N8QZXJpVY3tBa6b7ydScQ1d9vWNHylKNRmwQLls0Is-K-kVyfmuT7z82L_VrhIYvcdo0I4T6VNqV9d8Ter48cY9twX_r0AUkpNHlI6eHUyfbQ0hWD553vsxbxV9Sek5DM1zAWcLEr9QRleAuASRc1tDNl0ugiENObaWoxl8sLQ_NbUWyrT2ZYU6gKrfWrqV8dg1EtJ_FJucUKEQ2wt2EXbXYAozMnRlmB-chdSH1dZvHFb&drmtype=0
-#EXTINF:-1 group-title="央视卫视",CCTV2财经
 http://pull-hs-f5.flive.douyincdn.com/media/stream-119931326014423724/index.m3u8?expire=1788829870&sign=c03a4c49199b80e56fcb866fd6f626cf&volcSecret=c03a4c49199b80e56fcb866fd6f626cf&volcTime=1788829870&exp_hrchy=w1&arch_hrchy=w1&major_anchor_level=common&t_id=037-2026090109110991635458530825F85EA7-KJjbuM
+#EXTINF:-1 group-title="央视卫视",CCTV2财经
+http://txycdn5.video.qq.com/1370417302.m3u8?time=1788247068&from=player&cdn=tcloud&sdtfrom=v401010931632&platform=4010603&butype=31&HLSP2P=1&vkey=nvkey_AQQgIOD67JDe-5xAxZqmSBFm7ve1247Lp1EA1YBorDPI4N2IEGZhtVbLw_FWoPqup6CpYxABcBZIiTAoqkIfPX9iu0hmTE69WthyTQcOCTCiInR8aZk-Np3T-Txdk42acaUStbRCGKwE1FmlPF-B6hpfxnkPfj_sx4T8XygPLrRFBBkowwk1cKuSgFzuTv149O_LFR3rHtDC-rh2rJafJsR4S4rXywXY9LwbwfpvCvbqrRSYm6KFzyAC2ixUEJQSYrk6g0wQ7yWb3G-QfnSM2QuEsgR8Z6qiz4j_cHaVprssMfrY1m5MaFZGW1Jgw7lJuTaPa1N8QZXJpVY3tBa6b7ydScQ1d9vWNHylKNRmwQLls0Is-K-kVyfmuT7z82L_VrhIYvcdo0I4T6VNqV9d8Ter48cY9twX_r0AUkpNHlI6eHUyfbQ0hWD553vsxbxV9Sek5DM1zAWcLEr9QRleAuASRc1tDNl0ugiENObaWoxl8sLQ_NbUWyrT2ZYU6gKrfWrqV8dg1EtJ_FJucUKEQ2wt2EXbXYAozMnRlmB-chdSH1dZvHFb&drmtype=0
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
 http://smartzhu.cn:1234/624878271$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
@@ -288,11 +288,11 @@ http://218.206.193.218:8888/hls/3/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
 http://222.134.19.49:8090/624878271
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
+http://74.91.26.218:82/live/cctv3hd.m3u8
+#EXTINF:-1 group-title="央视卫视",CCTV3综艺
 http://223.167.230.155:4022/rtp/239.45.1.68:5140
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
 http://114.254.38.234:8888/rtp/239.3.1.172:8001
-#EXTINF:-1 group-title="央视卫视",CCTV3综艺
-http://74.91.26.218:82/live/cctv3hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
 http://pull-hs-f5.flive.douyincdn.com/media/stream-119980188043051692/index.m3u8?expire=1788829933&sign=6e9fde6a4d426059accecfc66d4439c0&volcSecret=6e9fde6a4d426059accecfc66d4439c0&volcTime=1788829933&exp_hrchy=w1&arch_hrchy=w1&major_anchor_level=common&t_id=037-2026090109121311238EBDB4779D2AAE6E-xX4LCt
 #EXTINF:-1 group-title="央视卫视",CCTV3综艺
@@ -442,11 +442,11 @@ http://222.134.19.49:8090/608807416
 #EXTINF:-1 group-title="央视卫视",CCTV4中文国际
 http://223.167.230.155:4022/rtp/239.45.0.2:5140
 #EXTINF:-1 group-title="央视卫视",CCTV4中文国际
-http://114.254.38.234:8888/rtp/239.3.1.213:4220
-#EXTINF:-1 group-title="央视卫视",CCTV4中文国际
 http://114.254.38.234:8888/rtp/239.3.1.105:8092
 #EXTINF:-1 group-title="央视卫视",CCTV4中文国际
 http://114.254.38.234:8888/rtp/239.3.1.214:4220
+#EXTINF:-1 group-title="央视卫视",CCTV4中文国际
+http://114.254.38.234:8888/rtp/239.3.1.213:4220
 #EXTINF:-1 group-title="央视卫视",CCTV4中文国际
 http://198.204.240.250:82/live/cctv4k.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV4中文国际
@@ -580,9 +580,9 @@ http://222.134.19.49:8090/641886683
 #EXTINF:-1 group-title="央视卫视",CCTV5体育
 http://223.167.230.155:4022/rtp/239.45.1.69:5140
 #EXTINF:-1 group-title="央视卫视",CCTV5体育
-http://114.254.38.234:8888/rtp/239.3.1.130:8004
-#EXTINF:-1 group-title="央视卫视",CCTV5体育
 http://114.254.38.234:8888/rtp/239.3.1.173:8001
+#EXTINF:-1 group-title="央视卫视",CCTV5体育
+http://114.254.38.234:8888/rtp/239.3.1.130:8004
 #EXTINF:-1 group-title="央视卫视",CCTV5体育
 https://myip.pdtvhd.com/Sports/streams/CCTV5pul.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV5+体育赛事
@@ -782,11 +782,11 @@ http://218.206.193.218:8888/hls/7/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV7国防军事
 http://222.134.19.49:8090/673168121
 #EXTINF:-1 group-title="央视卫视",CCTV7国防军事
+http://74.91.26.218:82/live/cctv7hd.m3u8
+#EXTINF:-1 group-title="央视卫视",CCTV7国防军事
 http://223.167.230.155:4022/rtp/239.45.3.56:5140
 #EXTINF:-1 group-title="央视卫视",CCTV7国防军事
 http://114.254.38.234:8888/rtp/239.3.1.61:8104
-#EXTINF:-1 group-title="央视卫视",CCTV7国防军事
-http://74.91.26.218:82/live/cctv7hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
 http://smartzhu.cn:1234/624878356$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
@@ -886,15 +886,13 @@ http://218.206.193.218:8888/hls/8/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
 http://222.134.19.49:8090/624878356
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
-http://69.30.245.50/live/cctv8.m3u8
+http://74.91.26.218:82/live/cctv8hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
 http://223.167.230.155:4022/rtp/239.45.1.71:5140
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
 http://114.254.38.234:8888/rtp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视卫视",CCTV8电视剧
 http://198.204.240.250:82/live/cctv8k.m3u8
-#EXTINF:-1 group-title="央视卫视",CCTV8电视剧
-http://74.91.26.218:82/live/cctv8hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV9纪录
 http://smartzhu.cn:1234/673168140$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="央视卫视",CCTV9纪录
@@ -983,8 +981,6 @@ http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=ystenlive&Contentid=10000000
 http://218.206.193.218:8888/hls/9/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV9纪录
 http://222.134.19.49:8090/673168140
-#EXTINF:-1 group-title="央视卫视",CCTV9纪录
-http://74.91.26.218:82/live/cctv9hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV9纪录
 http://223.167.230.155:4022/rtp/239.45.3.4:5140
 #EXTINF:-1 group-title="央视卫视",CCTV9纪录
@@ -1080,13 +1076,11 @@ http://218.206.193.218:8888/hls/10/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV10科教
 http://222.134.19.49:8090/624878405
 #EXTINF:-1 group-title="央视卫视",CCTV10科教
+http://74.91.26.218:82/live/cctv10hd.m3u8
+#EXTINF:-1 group-title="央视卫视",CCTV10科教
 http://223.167.230.155:4022/rtp/239.45.3.8:5140
 #EXTINF:-1 group-title="央视卫视",CCTV10科教
 http://114.254.38.234:8888/rtp/239.3.1.63:8116
-#EXTINF:-1 group-title="央视卫视",CCTV10科教
-http://69.30.245.50/live/cctv10.m3u8
-#EXTINF:-1 group-title="央视卫视",CCTV10科教
-http://74.91.26.218:82/live/cctv10hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV10科教
 https://cdn4.skygo.mn/live/disk1/CCTV-10/HLSv3-FTA/CCTV-10.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV10科教
@@ -1176,11 +1170,11 @@ http://218.206.193.218:8888/hls/11/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV11戏曲
 http://222.134.19.49:8090/667987558
 #EXTINF:-1 group-title="央视卫视",CCTV11戏曲
-http://74.91.26.218:82/live/cctv11hd.m3u8
-#EXTINF:-1 group-title="央视卫视",CCTV11戏曲
 http://223.167.230.155:4022/rtp/239.45.1.196:5140
 #EXTINF:-1 group-title="央视卫视",CCTV11戏曲
 http://114.254.38.234:8888/rtp/239.3.1.152:8120
+#EXTINF:-1 group-title="央视卫视",CCTV11戏曲
+http://74.91.26.218:82/live/cctv11hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV11戏曲
 https://xykt-fix.github.io/play/a02b/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV11戏曲
@@ -1269,8 +1263,6 @@ http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=ystenlive&Contentid=10000000
 http://218.206.193.218:8888/hls/12/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV12社会与法
 http://222.134.19.49:8090/673168185
-#EXTINF:-1 group-title="央视卫视",CCTV12社会与法
-http://204.12.221.218:8181/3m1080p/cctv12.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV12社会与法
 http://223.167.230.155:4022/rtp/239.45.3.10:5140
 #EXTINF:-1 group-title="央视卫视",CCTV12社会与法
@@ -1370,11 +1362,11 @@ http://218.206.193.218:8888/hls/13/index.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV13新闻
 http://222.134.19.49:8090/608807423
 #EXTINF:-1 group-title="央视卫视",CCTV13新闻
-http://74.91.26.218:82/live/cctv13hd.m3u8
-#EXTINF:-1 group-title="央视卫视",CCTV13新闻
 http://223.167.230.155:4022/rtp/239.45.1.198:5140
 #EXTINF:-1 group-title="央视卫视",CCTV13新闻
 http://114.254.38.234:8888/rtp/239.3.1.124:8128
+#EXTINF:-1 group-title="央视卫视",CCTV13新闻
+http://74.91.26.218:82/live/cctv13hd.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV13新闻
 http://pull-f3.douyincdn.com/media/stream-696306310906118828.m3u8?auth_key=1788827987-0-0-99b3bce0f839be9288cc8a1b4c54f611&major_anchor_level=common&arch_hrchy=w1&exp_hrchy=w1&t_id=037-20260901090947C1CF192AF70C935E5DEA-1aJpbz
 #EXTINF:-1 group-title="央视卫视",CCTV13新闻
@@ -1395,6 +1387,8 @@ http://bztv.tvbus.cc:8081/cdnlive/cctv14.m3u8
 http://173.208.212.130:8181/720p/cctv14.m3u8
 #EXTINF:-1 group-title="央视卫视",CCTV14少儿
 http://173.208.212.130:8181/1080p/cctv14.m3u8
+#EXTINF:-1 group-title="央视卫视",CCTV14少儿
+http://38.75.136.137:98/gslb/dsdqbv/cctv14hd.m3u8?auth=test20251009
 #EXTINF:-1 group-title="央视卫视",CCTV14少儿
 http://223.167.230.155:4022/rtp/239.45.3.23:5140
 #EXTINF:-1 group-title="央视卫视",CCTV14少儿
@@ -1906,6 +1900,8 @@ http://218.206.193.218:8888/hls/41/index.m3u8
 #EXTINF:-1 group-title="央视卫视",辽宁卫视
 http://222.134.19.49:8090/630291707
 #EXTINF:-1 group-title="央视卫视",辽宁卫视
+http://223.167.230.155:4022/rtp/239.45.1.123:5140
+#EXTINF:-1 group-title="央视卫视",辽宁卫视
 http://114.254.38.234:8888/rtp/239.3.1.210:8056
 #EXTINF:-1 group-title="央视卫视",辽宁卫视
 https://hlsbkmgsplive.miguvideo.com/migu/kailu/lnwshd265/54/20200407/01.m3u8?&HlsSubType=&encrypt=
@@ -2022,8 +2018,6 @@ http://114.254.38.234:8888/rtp/239.3.1.133:8016
 #EXTINF:-1 group-title="央视卫视",黑龙江卫视
 http://182.150.112.112:2025/hls/66/index.m3u8
 #EXTINF:-1 group-title="央视卫视",东方卫视
-https://bp-resource-dfl.bestv.cn/148/3/video.m3u8$LR•IPV4•29『线路1』
-#EXTINF:-1 group-title="央视卫视",东方卫视
 http://smartzhu.cn:1234/651632648$LR•IPV4•29『线路2』
 #EXTINF:-1 group-title="央视卫视",东方卫视
 http://chen.ccwu.cc:1234/651632648$LR•IPV4•29『线路3』
@@ -2051,8 +2045,6 @@ http://173.208.212.130:8181/720p/dfws.m3u8$LR•IPV4•29『线路13』
 http://112.30.73.119:9901/tsfile/live/1033_1.m3u8?key=txiptv&playlive=0&authid=0$LR•IPV4•29『线路14』
 #EXTINF:-1 group-title="央视卫视",东方卫视
 http://by4.nty.tv189.cn/live/tm-xpdfws-4000k.m3u8$LR•IPV4•29『线路15』
-#EXTINF:-1 group-title="央视卫视",东方卫视
-https://bp-resource-dfl.bestv.cn/148/3/video.m3u8
 #EXTINF:-1 group-title="央视卫视",东方卫视
 http://smartzhu.cn:1234/651632648
 #EXTINF:-1 group-title="央视卫视",东方卫视
@@ -2084,11 +2076,7 @@ http://by4.nty.tv189.cn/live/tm-xpdfws-4000k.m3u8
 #EXTINF:-1 group-title="央视卫视",东方卫视
 http://45.192.97.170:8880/play/26.m3u8
 #EXTINF:-1 group-title="央视卫视",东方卫视
-http://bp-resource-dfl.bestv.cn/151/3/video.m3u8
-#EXTINF:-1 group-title="央视卫视",东方卫视
 http://120.48.113.49:6006/651632648
-#EXTINF:-1 group-title="央视卫视",东方卫视
-http://bp-resource-dfl.bestv.cn/148/3/video.m3u8
 #EXTINF:-1 group-title="央视卫视",东方卫视
 http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=ystenlive&Contentid=1000000001000005866&livemode=1&stbId=yu&mode=1&$8M
 #EXTINF:-1 group-title="央视卫视",东方卫视
@@ -2172,6 +2160,8 @@ http://218.206.193.218:8888/hls/44/index.m3u8
 #EXTINF:-1 group-title="央视卫视",江苏卫视
 http://222.134.19.49:8090/623899368
 #EXTINF:-1 group-title="央视卫视",江苏卫视
+http://38.75.136.137:98/gslb/dsdqbv/jswshd.m3u8?auth=test20251009
+#EXTINF:-1 group-title="央视卫视",江苏卫视
 http://223.167.230.155:4022/rtp/239.45.3.177:5140
 #EXTINF:-1 group-title="央视卫视",江苏卫视
 http://114.254.38.234:8888/rtp/239.3.1.135:8028
@@ -2244,9 +2234,13 @@ http://223.167.230.155:4022/rtp/239.45.3.178:5140
 #EXTINF:-1 group-title="央视卫视",浙江卫视
 http://114.254.38.234:8888/rtp/239.3.1.137:8036
 #EXTINF:-1 group-title="央视卫视",浙江卫视
+http://ali-m-l.cztv.com/channels/lantian/channel001/1080p.m3u8
+#EXTINF:-1 group-title="央视卫视",浙江卫视
 http://ali-xwl.cztv.com/live/channel011080Plxw.m3u8
 #EXTINF:-1 group-title="央视卫视",浙江卫视
 http://ali-xwl.cztv.com/live/channel01720Plxw.m3u8
+#EXTINF:-1 group-title="央视卫视",浙江卫视
+https://bd-xwl.cztv.com/live/channel4k2160p.m3u8
 #EXTINF:-1 group-title="央视卫视",安徽卫视
 http://38.75.136.137:98/gslb/dsdqpub/ahwshd.m3u8?auth=testpub$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="央视卫视",安徽卫视
@@ -2606,6 +2600,8 @@ http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=500000
 #EXTINF:-1 group-title="央视卫视",湖南卫视
 http://218.206.193.218:8888/hls/36/index.m3u8
 #EXTINF:-1 group-title="央视卫视",湖南卫视
+http://74.91.26.218:82/live/hnwshd.m3u8
+#EXTINF:-1 group-title="央视卫视",湖南卫视
 http://223.167.230.155:4022/rtp/239.45.3.228:5140
 #EXTINF:-1 group-title="央视卫视",湖南卫视
 http://114.254.38.234:8888/rtp/239.3.1.132:8012
@@ -2647,6 +2643,8 @@ http://112.30.73.119:9901/tsfile/live/1273_1.m3u8?key=txiptv&playlive=0&authid=0
 http://by4.nty.tv189.cn/live/tm-ysgdws-4000k.m3u8$LR•IPV4•29『线路24』
 #EXTINF:-1 group-title="央视卫视",广东卫视
 http://119.29.142.81:4022/udp/239.77.0.84:5146
+#EXTINF:-1 group-title="央视卫视",广东卫视
+http://hongzhijiaoyu.net:8188/udp/239.77.0.84:5146
 #EXTINF:-1 group-title="央视卫视",广东卫视
 http://lsa.familyds.com:8188/udp/239.77.0.84:5146
 #EXTINF:-1 group-title="央视卫视",广东卫视
@@ -2862,9 +2860,9 @@ http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=100000
 #EXTINF:-1 group-title="央视卫视",四川卫视
 http://218.206.193.218:8888/hls/55/index.m3u8
 #EXTINF:-1 group-title="央视卫视",四川卫视
-http://223.167.230.155:4022/rtp/239.45.1.83:5140
-#EXTINF:-1 group-title="央视卫视",四川卫视
 http://114.254.38.234:8888/rtp/239.3.1.29:8288
+#EXTINF:-1 group-title="央视卫视",四川卫视
+http://223.167.230.155:4022/rtp/239.45.1.83:5140
 #EXTINF:-1 group-title="央视卫视",贵州卫视
 http://38.75.136.137:98/gslb/dsdqpub/gzwshd.m3u8?auth=testpub$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="央视卫视",贵州卫视
@@ -2895,6 +2893,8 @@ http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=FifastbLive&Contentid=500000
 http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=ystenlive&Contentid=1000000002000003169&livemode=1&stbId=yu&mode=1&$4M
 #EXTINF:-1 group-title="央视卫视",贵州卫视
 http://218.206.193.218:8888/hls/34/index.m3u8
+#EXTINF:-1 group-title="央视卫视",贵州卫视
+https://live.264788.xyz/channel/guizhouweishi?streamid=091bd59ea031989839c23459bb8cc9d4&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
 #EXTINF:-1 group-title="央视卫视",贵州卫视
 http://223.167.230.155:4022/rtp/239.45.1.80:5140
 #EXTINF:-1 group-title="央视卫视",贵州卫视
@@ -3032,8 +3032,6 @@ http://gslbserv.itv.cmvideo.cn:80/1.m3u8?channel-id=bestzb&Contentid=50000000060
 #EXTINF:-1 group-title="央视卫视",甘肃卫视
 http://218.206.193.218:8888/hls/58/index.m3u8
 #EXTINF:-1 group-title="央视卫视",甘肃卫视
-http://63.141.230.178:82/gslb/zbdq5.m3u8?id=gswshd
-#EXTINF:-1 group-title="央视卫视",甘肃卫视
 http://223.167.230.155:4022/rtp/239.45.1.234:5140
 #EXTINF:-1 group-title="央视卫视",甘肃卫视
 http://114.254.38.234:8888/rtp/239.3.1.49:8188
@@ -3138,9 +3136,9 @@ http://222.134.19.49:8090/738910535
 #EXTINF:-1 group-title="央视卫视",宁夏卫视
 http://223.167.230.155:4022/rtp/239.45.1.213:5140
 #EXTINF:-1 group-title="央视卫视",宁夏卫视
-http://114.254.38.234:8888/rtp/239.3.1.46:8124
-#EXTINF:-1 group-title="央视卫视",宁夏卫视
 http://120.76.248.139/live/bfgd/4200000118.m3u8
+#EXTINF:-1 group-title="央视卫视",宁夏卫视
+http://114.254.38.234:8888/rtp/239.3.1.46:8124
 #EXTINF:-1 group-title="央视卫视",宁夏卫视
 https://hls.ningxiahuangheyun.com/live/nxws1M.m3u8
 #EXTINF:-1 group-title="央视卫视",新疆卫视
@@ -3186,9 +3184,11 @@ http://gd.wsd.gd.cn:1698/hls/92/index.m3u8$LR•IPV4•29『线路2』
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://211.97.63.3:3443/hls/541/index.m3u8$LR•IPV4•29『线路3』
 #EXTINF:-1 group-title="香港频道",翡翠台
-http://49.232.143.177:80/pyxg/hmy.php?id=翡翠台_1&key=***$LR•IPV4•29『线路6』
+http://play.wenxiang.cn/live/e240363d284b6f41fcb7136eef507ef6.flv$LR•IPV4•29『线路4』
 #EXTINF:-1 group-title="香港频道",翡翠台
-http://49.232.143.177:80/pyxg/hmy.php?id=翡翠台備&key=***$LR•IPV4•29『线路7』
+http://49.232.143.177:80/pyxg/hmy.php?id=翡翠台_1&key=***$LR•IPV4•29『线路5』
+#EXTINF:-1 group-title="香港频道",翡翠台
+http://49.232.143.177:80/pyxg/hmy.php?id=翡翠台備&key=***$LR•IPV4•29『线路6』
 #EXTINF:-1 group-title="香港频道",翡翠台
 https://cdn3.indevs.in/stream/tvb/fct/$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="香港频道",翡翠台
@@ -3214,6 +3214,12 @@ http://gd.wsd.gd.cn:1698/hls/92/index.m3u8
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://211.97.63.3:3443/hls/541/index.m3u8
 #EXTINF:-1 group-title="香港频道",翡翠台
+http://play.wenxiang.cn/live/e240363d284b6f41fcb7136eef507ef6.flv
+#EXTINF:-1 group-title="香港频道",翡翠台
+https://play.wenxiang.cn/live/0389d29514f0290d6c774eb18f0d604a.flv
+#EXTINF:-1 group-title="香港频道",翡翠台
+http://49.232.143.177:80/pyxg/hmy.php?id=翡翠台_1&key=***
+#EXTINF:-1 group-title="香港频道",翡翠台
 http://49.232.143.177:80/pyxg/hmy.php?id=翡翠台備&key=***
 #EXTINF:-1 group-title="香港频道",翡翠台
 https://cdn.qd.je/163189/fct4k
@@ -3234,17 +3240,17 @@ http://c.123.rr.kg/163189/hlfct
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://cdn6.163189.xyz/163189/fct4k
 #EXTINF:-1 group-title="香港频道",翡翠台
-http://r.jdshipin.com/n90gt
+http://r.jdshipin.com/GeWKr
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://php.jdshipin.com:8880/TVOD/iptv.php?id=j1
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://r.jdshipin.com/thuYX
 #EXTINF:-1 group-title="香港频道",翡翠台
-http://php.jdshipin.com:8880/TVOD/iptv.php?id=fct3
-#EXTINF:-1 group-title="香港频道",翡翠台
 http://ali.hlspull.yximgs.com/live/tboxprofhwwqpthqyqtqqqxcxbfhqqfqvhdtqdvbtvqsqxqfsqqcvbctvbfc.flv
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://php.jdshipin.com:8880/TVOD/iptv.php?id=fct4
+#EXTINF:-1 group-title="香港频道",翡翠台
+http://php.jdshipin.com:8880/TVOD/iptv.php?id=fct3
 #EXTINF:-1 group-title="香港频道",翡翠台
 http://php.jdshipin.com:8880/TVOD/iptv.php?id=fct
 #EXTINF:-1 group-title="香港频道",明珠台
@@ -3267,6 +3273,8 @@ http://49.232.143.177:80/pyxg/hmy.php?id=明珠台b&key=***
 https://cdn.qd.je/163189/mzt
 #EXTINF:-1 group-title="香港频道",明珠台
 https://cdn.qd.je/163189/mztvtt
+#EXTINF:-1 group-title="香港频道",明珠台
+http://116.77.33.98:44330/tsfile/live/1009_1.m3u8?key=txiptv
 #EXTINF:-1 group-title="香港频道",明珠台
 http://php.jdshipin.com/TVOD/iptv.php?id=mzt
 #EXTINF:-1 group-title="香港频道",无线新闻台
@@ -3299,6 +3307,8 @@ https://cdn.qd.je/163189/tvbp
 https://cdn.qd.je/163189/tvbpvtt
 #EXTINF:-1 group-title="香港频道",TVB Plus
 https://cdn.qd.je/163189/tvbp2
+#EXTINF:-1 group-title="香港频道",TVB Plus
+http://php.jdshipin.com/TVOD/iptv.php?id=j2
 #EXTINF:-1 group-title="香港频道",凤凰卫视
 https://7612-5516-affc-d88b.kylintv.tv/live/pxinhd_iphone.m3u8
 #EXTINF:-1 group-title="香港频道",凤凰卫视
@@ -3454,15 +3464,17 @@ http://183.234.143.5:85/tsfile/live/1069_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="少儿动画",广东少儿
 http://119.29.142.81:4022/udp/239.77.0.250:5146$LR•IPV4•29『线路1』
 #EXTINF:-1 group-title="少儿动画",广东少儿
-http://38.75.136.137:98/gslb/dsdqpub/gdtvs5.m3u8?auth=testpub$LR•IPV4•29『线路12』
+http://38.75.136.137:98/gslb/dsdqpub/gdtvs5.m3u8?auth=testpub$LR•IPV4•29『线路9』
 #EXTINF:-1 group-title="少儿动画",广东少儿
-http://107.150.60.122/live/gdtvs5.m3u8$LR•IPV4•29『线路13』
+http://107.150.60.122/live/gdtvs5.m3u8$LR•IPV4•29『线路10』
 #EXTINF:-1 group-title="少儿动画",广东少儿
-http://192.151.150.154/live/gdtvs5.m3u8$LR•IPV4•29『线路14』
+http://192.151.150.154/live/gdtvs5.m3u8$LR•IPV4•29『线路11』
 #EXTINF:-1 group-title="少儿动画",广东少儿
-http://198.204.228.26/live/gdtvs5.m3u8$LR•IPV4•29『线路15』
+http://198.204.228.26/live/gdtvs5.m3u8$LR•IPV4•29『线路12』
 #EXTINF:-1 group-title="少儿动画",广东少儿
 http://119.29.142.81:4022/udp/239.77.0.250:5146
+#EXTINF:-1 group-title="少儿动画",广东少儿
+http://hongzhijiaoyu.net:8188/udp/239.77.0.250:5146
 #EXTINF:-1 group-title="少儿动画",广东少儿
 http://lsa.familyds.com:8188/udp/239.77.0.250:5146
 #EXTINF:-1 group-title="少儿动画",广东少儿
@@ -3496,6 +3508,8 @@ http://183.234.143.5:85/tsfile/live/1001_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="少儿动画",广东少儿
 http://120.238.85.131:9901/tsfile/live/1018_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="少儿动画",浙江少儿
+http://ali-m-l.cztv.com/channels/lantian/channel008/1080p.m3u8
+#EXTINF:-1 group-title="少儿动画",浙江少儿
 https://ali-m-l.cztv.com/channels/lantian/channel008/1080p.m3u8
 #EXTINF:-1 group-title="少儿动画",浙江少儿
 http://ali-xwl.cztv.com/live/channel081080Plxw.m3u8
@@ -3519,6 +3533,8 @@ http://107.150.60.122/live/jxtv6.m3u8
 http://192.151.150.154/live/jxtv6.m3u8
 #EXTINF:-1 group-title="少儿动画",江西少儿
 http://198.204.228.26/live/jxtv6.m3u8
+#EXTINF:-1 group-title="少儿动画",黑龙江少儿
+https://ls.qingting.fm/live/4972/64k.m3u8
 #EXTINF:-1 group-title="少儿动画",甘肃少儿
 https://hls.gstv.com.cn/49048r/922k96.m3u8
 #EXTINF:-1 group-title="少儿动画",宁夏少儿
