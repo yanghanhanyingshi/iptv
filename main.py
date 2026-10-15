@@ -10,6 +10,7 @@ headers = {
 
 # 采集源地址
 SOURCES = [
+    "https://66-b41.pages.dev/live.m3u",
     "https://wget.la/https://github.com/yanghanhanyingshi/JYYS/blob/main/live.txt",
     "https://raw.githubusercontent.com/fafa002/yf2025/refs/heads/main/yiyifafa.txt",
     "https://iptv.445569.xyz/live.m3u",
